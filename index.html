@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glowthrf — Fashion Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #faf6f0;
+      --warm: #f0e8dc;
+      --gold: #c9a96e;
+      --dark: #1a1614;
+      --mid: #6b5c4e;
+      --light: #e8ddd0;
+      --pink: #e8b4b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(250,246,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .nav-logo img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--dark);
+    }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta {
+      display: flex; gap: 12px; align-items: center;
+    }
+    .btn-wa {
+      background: #25D366; color: white;
+      padding: 9px 20px; border-radius: 40px;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--warm) 50%, #e8ddd0 100%);
+    }
+    .hero-circle {
+      position: absolute; right: -120px; top: -120px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 560px; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+      border: 1px solid var(--gold); padding: 6px 16px; border-radius: 40px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.01em; margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p {
+      font-size: 16px; color: var(--mid); line-height: 1.7;
+      margin-bottom: 40px; max-width: 420px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--dark); color: var(--cream);
+      padding: 14px 32px; border-radius: 40px;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,22,20,0.25); }
+    .btn-outline {
+      border: 1.5px solid var(--dark); color: var(--dark);
+      padding: 13px 32px; border-radius: 40px;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--dark); color: var(--cream); }
+
+    .hero-images {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 50%; display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px; padding: 80px 48px 48px 8px;
+    }
+    .hero-img {
+      overflow: hidden; border-radius: 12px;
+    }
+    .hero-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .hero-img:hover img { transform: scale(1.05); }
+    .hero-img:first-child { grid-row: 1 / 3; border-radius: 120px 12px 12px 12px; }
+
+    /* ── SECTION TITLES ── */
+    .section { padding: 100px 48px; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; display: block;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
+      line-height: 1.1;
+    }
+    .section-header h2 em { font-style: italic; color: var(--gold); }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .product-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(26,22,20,0.12);
+    }
+    .product-img {
+      width: 100%; aspect-ratio: 3/4; overflow: hidden; position: relative;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img { transform: scale(1.07); }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--gold); color: white;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .product-info { padding: 20px 22px 24px; }
+    .product-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 400; margin-bottom: 6px;
+    }
+    .product-info p {
+      font-size: 13px; color: var(--mid); margin-bottom: 14px; line-height: 1.5;
+    }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: var(--dark);
+    }
+    .btn-order {
+      background: var(--dark); color: white;
+      padding: 8px 18px; border-radius: 30px;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-order:hover { background: var(--gold); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--dark); overflow: hidden;
+      padding: 18px 0;
+    }
+    .marquee-track {
+      display: flex; gap: 48px; width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-track span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-style: italic; color: var(--gold);
+      white-space: nowrap; letter-spacing: 0.05em;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── REVIEWS ── */
+    .reviews { background: var(--warm); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .review-card {
+      background: white; border-radius: 20px; padding: 28px;
+    }
+    .stars { color: var(--gold); font-size: 18px; margin-bottom: 12px; letter-spacing: 2px; }
+    .review-text {
+      font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 20px;
+      font-style: italic;
+    }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .reviewer-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 18px; color: white;
+    }
+    .reviewer-name { font-size: 13px; font-weight: 500; }
+    .reviewer-loc { font-size: 11px; color: var(--mid); }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px; background: var(--light);
+    }
+    .info-item {
+      background: var(--cream); padding: 40px 32px; text-align: center;
+    }
+    .info-icon { font-size: 28px; margin-bottom: 12px; }
+    .info-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; margin-bottom: 6px;
+    }
+    .info-item p { font-size: 13px; color: var(--mid); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: var(--cream);
+      padding: 60px 48px 32px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; color: rgba(250,246,240,0.6); line-height: 1.7; max-width: 280px; }
+    footer h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; margin-bottom: 16px; font-weight: 400;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul li a {
+      font-size: 13px; color: rgba(250,246,240,0.6);
+      text-decoration: none; transition: color 0.2s;
+    }
+    footer ul li a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(250,246,240,0.1);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: rgba(250,246,240,0.4); }
+    .social-links { display: flex; gap: 16px; }
+    .social-links a {
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(250,246,240,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--gold); }
+
+    /* ── FLOAT WA ── */
+    .float-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      background: #25D366; color: white;
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: transform 0.2s;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; flex-direction: column; }
+      .hero-images { display: none; }
+      .hero-content { max-width: 100%; }
+      .section { padding: 60px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 48px 24px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Glowthrf" />
+    <span>GLOWTHRF</span>
+  </a>
+  <div class="nav-links">
+    <a href="#produk">Produk</a>
+    <a href="#ulasan">Ulasan</a>
+    <a href="#info">Info</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+  <div class="nav-cta">
+    <a href="https://wa.me/087841697937" target="_blank" class="btn-wa">💬 Chat WA</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-content fade-up visible">
+    <div class="hero-tag">🎀 New Arrivals 2025</div>
+    <h1>Tampil<br/><em>Cantik &</em><br/>Percaya Diri</h1>
+    <p>Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles, hingga shorts kasual. Semua dengan harga terjangkau, kualitas terbaik.</p>
+    <div class="hero-btns">
+      <a href="#produk" class="btn-primary">Lihat Koleksi</a>
+      <a href="https://www.tokopedia.com/glowthrf" target="_blank" class="btn-outline">Tokopedia</a>
+    </div>
+  </div>
+  <div class="hero-images">
+    <div class="hero-img"><img src="img6.png" alt="Produk 1" /></div>
+    <div class="hero-img"><img src="img2.jpg" alt="Produk 2" /></div>
+    <div class="hero-img"><img src="img4.jpg" alt="Produk 3" /></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>🎀 Glowthrf Store</span>
+    <span>·</span>
+    <span>Fashion Wanita Terkini</span>
+    <span>·</span>
+    <span>Pengiriman dari Kosambi, Tangerang</span>
+    <span>·</span>
+    <span>COD & Transfer Tersedia</span>
+    <span>·</span>
+    <span>🎀 Glowthrf Store</span>
+    <span>·</span>
+    <span>Fashion Wanita Terkini</span>
+    <span>·</span>
+    <span>Pengiriman dari Kosambi, Tangerang</span>
+    <span>·</span>
+    <span>COD & Transfer Tersedia</span>
+    <span>·</span>
+    <span>🎀 Glowthrf Store</span>
+    <span>·</span>
+    <span>Fashion Wanita Terkini</span>
+    <span>·</span>
+    <span>Pengiriman dari Kosambi, Tangerang</span>
+    <span>·</span>
+    <span>COD & Transfer Tersedia</span>
+    <span>·</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section" id="produk">
+  <div class="section-header fade-up">
+    <span class="section-tag">Koleksi Kami</span>
+    <h2>Pilihan <em>Terlengkap</em></h2>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img2.jpg" alt="Kaos Morning Feast" />
+        <span class="product-badge">Bestseller</span>
+      </div>
+      <div class="product-info">
+        <h3>Kaos Morning Feast</h3>
+        <p>Baby tee graphic "A Morning Feast for the Soul" — aesthetic & kece untuk daily outfit</p>
+        <div class="product-footer">
+          <span class="price">Rp 80.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Kaos%20Morning%20Feast" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img3.jpg" alt="Kaos Not Today Club" />
+        <span class="product-badge">New</span>
+      </div>
+      <div class="product-info">
+        <h3>Kaos Not Today Club</h3>
+        <p>Oversized tee dengan typo "Not Today Club" — cocok dipadupadankan dengan apa saja</p>
+        <div class="product-footer">
+          <span class="price">Rp 80.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Kaos%20Not%20Today%20Club" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img1.jpg" alt="Kaos Tokyo 14" />
+      </div>
+      <div class="product-info">
+        <h3>Kaos Tokyo 14</h3>
+        <p>Baby tee sporty bertuliskan "Tokyo 14" — minimalis dan stylish untuk tampilan kasual</p>
+        <div class="product-footer">
+          <span class="price">Rp 80.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Kaos%20Tokyo%2014" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img4.jpg" alt="Set Polkadot Rhinestone" />
+        <span class="product-badge">Favorit</span>
+      </div>
+      <div class="product-info">
+        <h3>Set Polkadot Rhinestone</h3>
+        <p>Set tank top + mini skirt polkadot hitam berhias rhinestone — elegan untuk malam hari</p>
+        <div class="product-footer">
+          <span class="price">Rp 145.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Set%20Polkadot%20Rhinestone" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img5.jpg" alt="Korset Polkadot Cream" />
+      </div>
+      <div class="product-info">
+        <h3>Korset Polkadot Cream</h3>
+        <p>Bustier korset polkadot krem dengan tali serut depan — feminine & trendy</p>
+        <div class="product-footer">
+          <span class="price">Rp 125.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Korset%20Polkadot%20Cream" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img6.png" alt="Set Ruffle Skirt 01" />
+        <span class="product-badge">New</span>
+      </div>
+      <div class="product-info">
+        <h3>Set Ruffle Skirt — Look 01</h3>
+        <p>Rok ruffles layer hitam dipadukan kaos Maryland — outfit casual chic sempurna</p>
+        <div class="product-footer">
+          <span class="price">Rp 135.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Ruffle%20Skirt%20Look%2001" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img7.png" alt="Set Ruffle Skirt 02" />
+      </div>
+      <div class="product-info">
+        <h3>Set Ruffle Skirt — Look 02</h3>
+        <p>Rok ruffles layer dipadukan crop tee cokelat — estetik vintage yang memesona</p>
+        <div class="product-footer">
+          <span class="price">Rp 135.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Ruffle%20Skirt%20Look%2002" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img9.jpg" alt="Shorts Hitam Kasual" />
+      </div>
+      <div class="product-info">
+        <h3>Shorts Hitam Kasual</h3>
+        <p>Celana pendek hitam elastik pinggang tinggi — nyaman untuk aktivitas harian</p>
+        <div class="product-footer">
+          <span class="price">Rp 95.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Shorts%20Hitam%20Kasual" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-img">
+        <img src="img10.jpg" alt="Shorts Linen Drawstring" />
+        <span class="product-badge">2 Warna</span>
+      </div>
+      <div class="product-info">
+        <h3>Shorts Linen Drawstring</h3>
+        <p>Shorts linen bertali tersedia Navy & Putih — ringan, adem, cocok untuk musim panas</p>
+        <div class="product-footer">
+          <span class="price">Rp 105.000</span>
+          <a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20order%20Shorts%20Linen%20Drawstring" target="_blank" class="btn-order">Order</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews" id="ulasan">
+  <div class="section-header fade-up">
+    <span class="section-tag">Apa Kata Mereka</span>
+    <h2>Ulasan <em>Pelanggan</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Kaos morning feast-nya bagus banget! Bahannya adem, jahitannya rapi. Udah beli 3x dan selalu puas. Pengiriman dari Tangerang juga cepet banget sampainya ke Jakarta!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">A</div>
+        <div>
+          <div class="reviewer-name">Aurel R.</div>
+          <div class="reviewer-loc">Jakarta Selatan ⭐ Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Set polkadot rhinestone-nya kece parah! Dipake ke kondangan langsung banyak yang nanya beli dimana. Kualitasnya worth it banget sama harganya. Recommended 100%!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">S</div>
+        <div>
+          <div class="reviewer-name">Salsabila N.</div>
+          <div class="reviewer-loc">Tangerang ⭐ Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Rok ruffle-nya lucuuu! Foto sama reality sama, gak zonk. Seller juga ramah dan responsif banget. Packing rapih, sampe aman. Pasti balik lagi order!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">N</div>
+        <div>
+          <div class="reviewer-name">Nadya K.</div>
+          <div class="reviewer-loc">Bekasi ⭐ Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Shorts linen-nya adem banget dipake kerja. Belinya 2 warna sekaligus navy sama putih. Harga terjangkau tapi kualitas premium. Glowthrf emang paling top!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">D</div>
+        <div>
+          <div class="reviewer-name">Dinda M.</div>
+          <div class="reviewer-loc">Depok ⭐ Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Korset polkadot cream-nya cantik banget dipake ke café. Bahannya berkualitas, modelnya pas di badan. Chat WA-nya juga cepet dibalas. Seneng banget belanja di sini!"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">R</div>
+        <div>
+          <div class="reviewer-name">Rara F.</div>
+          <div class="reviewer-loc">Bogor ⭐ Verified Buyer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Udah langganan Glowthrf dari awal buka. Semua produknya konsisten bagus dan harganya tetep oke. Sukses terus ya kakak! Semoga makin banyak koleksi barunya 🎀"</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">V</div>
+        <div>
+          <div class="reviewer-name">Vanya P.</div>
+          <div class="reviewer-loc">BSD City ⭐ Loyal Customer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip" id="info">
+  <div class="info-item fade-up">
+    <div class="info-icon">📦</div>
+    <h4>Pengiriman Cepat</h4>
+    <p>Dikirim dari Kosambi, Tangerang. Same-day & next-day tersedia.</p>
+  </div>
+  <div class="info-item fade-up">
+    <div class="info-icon">✅</div>
+    <h4>Kualitas Terjamin</h4>
+    <p>Setiap produk dicek kualitasnya sebelum dikirim ke kamu.</p>
+  </div>
+  <div class="info-item fade-up">
+    <div class="info-icon">💬</div>
+    <h4>Respon Cepat</h4>
+    <p>Chat WhatsApp kami selalu aktif dan siap membantu.</p>
+  </div>
+  <div class="info-item fade-up">
+    <div class="info-icon">🔄</div>
+    <h4>Mudah Retur</h4>
+    <p>Produk cacat atau salah kirim? Kami siap bantu proses retur.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="kontak">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Glowthrf" />
+      <h5>🎀 Glowthrf</h5>
+      <p>Fashion wanita pilihan dengan harga terjangkau dan kualitas terbaik. Dikirim langsung dari Kosambi, Tangerang.</p>
+    </div>
+    <div>
+      <h5>Belanja</h5>
+      <ul>
+        <li><a href="https://www.tokopedia.com/glowthrf" target="_blank">Tokopedia</a></li>
+        <li><a href="https://wa.me/087841697937" target="_blank">WhatsApp Order</a></li>
+        <li><a href="https://instagram.com/glowthrf" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Info</h5>
+      <ul>
+        <li><a href="#">Cara Order</a></li>
+        <li><a href="#">Pengiriman</a></li>
+        <li><a href="#">Kebijakan Retur</a></li>
+        <li><a href="https://wa.me/087841697937" target="_blank">Hubungi Kami</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Glowthrf Store. Kosambi, Tangerang, Banten.</p>
+    <div class="social-links">
+      <a href="https://instagram.com/glowthrf" target="_blank">Instagram</a>
+      <a href="https://www.tokopedia.com/glowthrf" target="_blank">Tokopedia</a>
+      <a href="https://wa.me/087841697937" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT WA BUTTON -->
+<a href="https://wa.me/087841697937?text=Halo%20Glowthrf!%20Saya%20mau%20tanya%20tentang%20produk" target="_blank" class="float-wa" title="Chat WhatsApp">💬</a>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) el.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
