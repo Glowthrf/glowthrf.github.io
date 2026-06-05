@@ -1,21 +1,1118 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Glowthrf — Fashion Wanita Terkini | Kaos, Set, Rok Ruffles</title>
-<meta name="description" content="Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles. Harga terjangkau, kualitas terbaik.">
-<meta name="keywords" content="fashion wanita, kaos graphic, set polkadot, rok ruffles, glowthrf">
-<meta property="og:title" content="Glowthrf — Fashion Wanita Terkini | Kaos, Set, Rok Ruffles"><meta property="og:description" content="Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles. Harga terjangkau, kualitas terbaik."><meta property="og:image" content="https://glowthrf.com/img6.png"><meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus%20Jakarta%20Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Glowthrf Admin Panel v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--pk:#D4537E;--dk:#9E3059;--lt:#FBEAF0;--tx:#1A0D12;--br:24px;--cr:12px;}
+:root{--pk:#D4537E;--pk-d:#9E3059;--pk-l:#FBEAF0;--bg:#F7F3F5;--sur:#fff;--sur2:#F9F5F7;--bdr:#EEE0E8;--bdr2:#E0CDD6;--tx:#1A0D12;--tx2:#6B4F5A;--tx3:#9E8590;--grn:#2E7D52;--grn-bg:#E8F5EF;--amb:#9A5C00;--amb-bg:#FFF3DC;--red:#C0392B;--red-bg:#FDECEB;--blu:#1A5FA8;--blu-bg:#E8F1FB;--r:10px;--rl:14px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--tx);display:flex;height:100vh;overflow:hidden;font-size:14px}
+.sb{width:240px;min-width:240px;background:var(--sur);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;z-index:20}
+.sb-hd{padding:18px 16px 12px;border-bottom:1px solid var(--bdr)}
+.sb-brand{display:flex;align-items:center;gap:10px}
+.sb-icon{width:34px;height:34px;background:var(--pk);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.sb-name{font-size:15px;font-weight:700}.sb-sub{font-size:10px;color:var(--tx3);margin-top:1px}
+.ns{padding:8px 0 2px}.nl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);padding:6px 16px 4px}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;font-size:12px;font-weight:500;color:var(--tx2);border-left:3px solid transparent;transition:all .12s;user-select:none}
+.ni:hover{background:var(--pk-l);color:var(--pk)}.ni.active{background:var(--pk-l);color:var(--pk);border-left-color:var(--pk);font-weight:600}
+.ni .ic{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.ni .nc{margin-left:auto;background:var(--pk);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:20px;min-width:16px;text-align:center}
+.sb-ft{margin-top:auto;padding:12px 16px;border-top:1px solid var(--bdr)}
+.sb-btn{width:100%;padding:10px;background:var(--pk);color:#fff;border:none;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .12s;font-family:inherit}
+.sb-btn:hover{background:var(--pk-d)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:var(--sur);border-bottom:1px solid var(--bdr);padding:12px 22px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.topbar h2{font-size:15px;font-weight:700}.topbar p{font-size:11px;color:var(--tx3);margin-top:1px}
+.topbar-r{display:flex;gap:8px}
+.content{flex:1;overflow-y:auto;padding:22px}
+.page{display:none}.page.active{display:block}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r);font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--bdr2);background:var(--sur);color:var(--tx);transition:all .12s;font-family:inherit}
+.btn:hover{background:var(--sur2)}.btn-pk{background:var(--pk);border-color:var(--pk);color:#fff}.btn-pk:hover{background:var(--pk-d)}
+.btn-sm{padding:4px 9px;font-size:11px}.btn-danger{color:var(--red);border-color:#F5C6C3;background:var(--red-bg)}.btn-danger:hover{background:#FAD7D5}
+.card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px;margin-bottom:14px}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pk);flex-shrink:0}
+.f{margin-bottom:12px}.f:last-child{margin-bottom:0}
+.lbl{display:block;font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:4px}
+.lbl span{font-weight:400;color:var(--tx3);margin-left:3px}
+input[type=text],input[type=number],input[type=url],input[type=tel],input[type=datetime-local],textarea,select{width:100%;padding:8px 10px;border:1px solid var(--bdr2);border-radius:var(--r);font-size:12px;color:var(--tx);background:var(--sur);font-family:inherit;transition:border .12s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pk);box-shadow:0 0 0 3px rgba(212,83,126,.1)}
+textarea{resize:vertical;min-height:68px;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.bp{background:var(--pk-l);color:var(--pk-d)}.bg{background:var(--grn-bg);color:var(--grn)}.ba{background:var(--amb-bg);color:var(--amb)}.bb{background:var(--blu-bg);color:var(--blu)}.bgr{background:var(--sur2);color:var(--tx2);border:1px solid var(--bdr)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px}
+.stat-lbl{font-size:10px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.stat-val{font-size:24px;font-weight:700}.stat-sub{font-size:10px;color:var(--tx3);margin-top:3px}
+.item-row{display:grid;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.item-row:last-child{border-bottom:none}
+.pr{grid-template-columns:48px 1fr 90px 70px auto auto}
+.item-thumb{width:48px;height:48px;object-fit:cover;border-radius:7px;border:1px solid var(--bdr);background:var(--sur2)}
+.item-name{font-size:12px;font-weight:600}.item-sub{font-size:11px;color:var(--tx3);margin-top:2px;line-height:1.4}
+.item-price{font-size:12px;font-weight:700;color:var(--pk)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(20,5,10,.5);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.overlay.open{display:flex}
+.modal{background:var(--sur);border-radius:var(--rl);padding:22px;width:min(580px,94vw);max-height:90vh;overflow-y:auto}
+.modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-title{font-size:14px;font-weight:700}
+.modal-close{background:none;border:none;cursor:pointer;font-size:20px;color:var(--tx3);padding:2px 6px;border-radius:6px}
+.modal-close:hover{background:var(--sur2)}
+.modal-ft{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--bdr)}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--bdr);margin-bottom:16px}
+.tab{padding:8px 12px;font-size:12px;font-weight:500;cursor:pointer;color:var(--tx3);border-bottom:2px solid transparent;transition:all .12s}
+.tab:hover{color:var(--tx)}.tab.active{color:var(--pk);border-bottom-color:var(--pk);font-weight:600}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.toast{position:fixed;bottom:24px;right:24px;background:#1A0D12;color:#fff;padding:10px 18px;border-radius:var(--r);font-size:12px;font-weight:500;z-index:999;opacity:0;transform:translateY(8px);transition:all .25s;display:flex;align-items:center;gap:7px}
+.toast.show{opacity:1;transform:translateY(0)}
+.ib{display:flex;gap:8px;padding:10px 12px;border-radius:var(--r);margin-bottom:14px;font-size:12px;line-height:1.6}
+.ib.info{background:var(--blu-bg);border:1px solid #B5D4F4;color:var(--blu)}
+.ib.warn{background:var(--amb-bg);border:1px solid #FAC775;color:var(--amb)}
+.ib.ok{background:var(--grn-bg);border:1px solid #A8D9BC;color:var(--grn)}
+.color-row{display:flex;align-items:center;gap:7px}
+.color-row input[type=color]{width:34px;height:34px;padding:2px;border-radius:6px;border:1px solid var(--bdr2);cursor:pointer;background:none}
+.swatch{width:32px;height:32px;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:all .12s}
+.swatch:hover,.swatch.active{border-color:var(--tx);transform:scale(1.1)}
+.img-prev{width:100%;height:130px;border-radius:var(--r);border:1px solid var(--bdr);overflow:hidden;background:var(--sur2);display:flex;align-items:center;justify-content:center;margin-bottom:7px;font-size:28px;opacity:.4}
+.img-prev img{width:100%;height:100%;object-fit:cover;opacity:1}
+.link-row{display:grid;grid-template-columns:1fr 1fr auto;gap:7px;align-items:end;margin-bottom:7px}
+.section-sep{border:none;border-top:1px solid var(--bdr);margin:16px 0}
+</style>
+</head>
+<body>
+<nav class="sb">
+  <div class="sb-hd"><div class="sb-brand"><div class="sb-icon">🎀</div><div><div class="sb-name">Glowthrf Admin</div><div class="sb-sub">Panel v3.0 — Full Features</div></div></div></div>
+  <div class="ns"><div class="nl">Overview</div><div class="ni active" onclick="P('dash',this)"><span class="ic">📊</span>Dashboard</div></div>
+  <div class="ns"><div class="nl">Halaman</div>
+    <div class="ni" onclick="P('hero',this)"><span class="ic">🖼</span>Hero & Banner</div>
+    <div class="ni" onclick="P('nav',this)"><span class="ic">🔗</span>Navigasi & Menu</div>
+    <div class="ni" onclick="P('marquee',this)"><span class="ic">📢</span>Teks Marquee</div>
+    <div class="ni" onclick="P('popup',this)"><span class="ic">🎁</span>Popup Promo & Diskon</div>
+    <div class="ni" onclick="P('banner',this)"><span class="ic">⏳</span>Banner Promo + Timer</div>
+  </div>
+  <div class="ns"><div class="nl">Produk</div>
+    <div class="ni" onclick="P('produk',this)"><span class="ic">👗</span>Koleksi Produk <span class="nc" id="nc-produk">9</span></div>
+    <div class="ni" onclick="P('newarrivals',this)"><span class="ic">✨</span>New Arrivals</div>
+    <div class="ni" onclick="P('bestseller',this)"><span class="ic">🔥</span>Best Seller</div>
+    <div class="ni" onclick="P('filter',this)"><span class="ic">🔍</span>Filter Produk</div>
+  </div>
+  <div class="ns"><div class="nl">Fitur Toko</div>
+    <div class="ni" onclick="P('keranjang',this)"><span class="ic">🛒</span>Keranjang Belanja</div>
+    <div class="ni" onclick="P('wishlist',this)"><span class="ic">❤️</span>Wishlist</div>
+    <div class="ni" onclick="P('detail',this)"><span class="ic">📄</span>Halaman Detail Produk</div>
+    <div class="ni" onclick="P('ukuran',this)"><span class="ic">📏</span>Ukuran & Warna</div>
+    <div class="ni" onclick="P('checkout',this)"><span class="ic">💳</span>Checkout & Pembayaran</div>
+    <div class="ni" onclick="P('pengiriman',this)"><span class="ic">🚚</span>Pengiriman</div>
+    <div class="ni" onclick="P('diskon',this)"><span class="ic">🏷️</span>Diskon Belanja</div>
+  </div>
+  <div class="ns"><div class="nl">Konten</div>
+    <div class="ni" onclick="P('ulasan',this)"><span class="ic">⭐</span>Ulasan <span class="nc" id="nc-ulasan">6</span></div>
+    <div class="ni" onclick="P('keunggulan',this)"><span class="ic">✅</span>Keunggulan</div>
+    <div class="ni" onclick="P('pembayaran',this)"><span class="ic">💳</span>Rekening & Pembayaran</div>
+    <div class="ni" onclick="P('footer',this)"><span class="ic">📋</span>Footer & Kontak</div>
+  </div>
+  <div class="ns"><div class="nl">Desain</div>
+    <div class="ni" onclick="P('warna',this)"><span class="ic">🎨</span>Warna & Tema</div>
+    <div class="ni" onclick="P('tipografi',this)"><span class="ic">🔤</span>Font & Tipografi</div>
+    <div class="ni" onclick="P('seo',this)"><span class="ic">🔍</span>SEO & Meta</div>
+  </div>
+  <div class="ns"><div class="nl">Tools</div>
+    <div class="ni" onclick="P('export',this)"><span class="ic">💾</span>Export & Download</div>
+  </div>
+  <div class="sb-ft"><button class="sb-btn" onclick="doExport()">💾 Export index.html</button></div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div><h2 id="pt">Dashboard</h2><p id="pd">Ringkasan website Glowthrf</p></div>
+    <div class="topbar-r"><button class="btn btn-sm btn-pk" onclick="doExport()">💾 Export</button></div>
+  </div>
+  <div class="content">
+
+<!-- DASHBOARD -->
+<div id="page-dash" class="page active">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-lbl">Total Produk</div><div class="stat-val" id="sv-produk">9</div><div class="stat-sub">Aktif di koleksi</div></div>
+    <div class="stat-card"><div class="stat-lbl">New Arrivals</div><div class="stat-val" id="sv-new">0</div><div class="stat-sub">Produk baru</div></div>
+    <div class="stat-card"><div class="stat-lbl">Best Seller</div><div class="stat-val" id="sv-best">0</div><div class="stat-sub">Produk laris</div></div>
+    <div class="stat-card"><div class="stat-lbl">Ulasan</div><div class="stat-val" id="sv-ulasan">6</div><div class="stat-sub">Testimoni</div></div>
+  </div>
+  <div class="ib info">💡 Panel v3 sudah dilengkapi semua fitur: Filter Produk, Halaman Detail, Pilih Ukuran &amp; Warna, Keranjang Belanja, Wishlist, Banner Countdown Timer, Popup Diskon, New Arrivals, dan Best Seller.</div>
+  <div class="grid2">
+    <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Akses Cepat</div></div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <button class="btn" onclick="P('produk',ni('produk'))">👗 Kelola Produk</button>
+        <button class="btn" onclick="P('popup',ni('popup'))">🎁 Edit Popup Diskon</button>
+        <button class="btn" onclick="P('banner',ni('banner'))">⏳ Edit Banner Timer</button>
+        <button class="btn" onclick="P('filter',ni('filter'))">🔍 Atur Filter Produk</button>
+        <button class="btn" onclick="P('keranjang',ni('keranjang'))">🛒 Setting Keranjang</button>
+        <button class="btn btn-pk" onclick="doExport()">💾 Export Website</button>
+      </div>
+    </div>
+    <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Status Fitur</div></div>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:12px">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Filter Produk</span><span class="badge bg" id="st-filter">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Halaman Detail</span><span class="badge bg">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Pilih Ukuran</span><span class="badge bg">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Keranjang Belanja</span><span class="badge bg" id="st-cart">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Wishlist</span><span class="badge bg" id="st-wl">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bdr)"><span>Popup Diskon</span><span class="badge bg" id="st-popup">Aktif</span></div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0"><span>Banner + Timer</span><span class="badge bg" id="st-banner">Aktif</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div id="page-hero" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Badge &amp; Heading</div></div>
+    <div class="f"><label class="lbl">Badge Atas Heading</label><input type="text" id="h-badge" value="🎀 New Arrivals 2025"></div>
+    <div class="f"><label class="lbl">Heading Utama</label><input type="text" id="h-heading" value="Tampil Cantik &amp; Percaya Diri"></div>
+    <div class="f"><label class="lbl">Bagian Teks Berwarna</label><input type="text" id="h-em" value="Cantik &amp;"></div>
+    <div class="f"><label class="lbl">Deskripsi</label><textarea id="h-desc">Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles, hingga shorts kasual. Semua dengan harga terjangkau, kualitas terbaik.</textarea></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Tombol CTA</div></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol 1</label><input type="text" id="h-btn1" value="Lihat Koleksi"></div>
+      <div class="f"><label class="lbl">Link Tombol 1</label><input type="text" id="h-link1" value="#produk"></div>
+    </div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol 2</label><input type="text" id="h-btn2" value="Tokopedia"></div>
+      <div class="f"><label class="lbl">Link Tombol 2</label><input type="url" id="h-link2" value="https://www.tokopedia.com/glowthrf"></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Foto Hero</div></div>
+    <div class="grid3">
+      <div><div class="img-prev" id="pv1"><img src="https://glowthrf.com/img6.png" onerror="this.parentNode.textContent='🖼'"></div><div class="f"><label class="lbl">URL Foto 1</label><input type="url" id="h-img1" value="https://glowthrf.com/img6.png" oninput="upv('pv1',this.value)"></div></div>
+      <div><div class="img-prev" id="pv2"><img src="https://glowthrf.com/img2.jpg" onerror="this.parentNode.textContent='🖼'"></div><div class="f"><label class="lbl">URL Foto 2</label><input type="url" id="h-img2" value="https://glowthrf.com/img2.jpg" oninput="upv('pv2',this.value)"></div></div>
+      <div><div class="img-prev" id="pv3"><img src="https://glowthrf.com/img4.jpg" onerror="this.parentNode.textContent='🖼'"></div><div class="f"><label class="lbl">URL Foto 3</label><input type="url" id="h-img3" value="https://glowthrf.com/img4.jpg" oninput="upv('pv3',this.value)"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div id="page-nav" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Logo &amp; Brand</div></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">URL Logo</label><input type="url" id="nav-logo" value="https://glowthrf.com/logo.png"></div>
+      <div class="f"><label class="lbl">Nama Toko</label><input type="text" id="nav-brand" value="GLOWTHRF"></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Menu Navigasi</div><button class="btn btn-sm btn-pk" onclick="addNavLink()">+ Tambah</button></div>
+    <div id="nav-links"></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Tombol WA Navbar</div></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol</label><input type="text" id="nav-wa-text" value="💬 Chat WA"></div>
+      <div class="f"><label class="lbl">Nomor WhatsApp</label><input type="tel" id="nav-wa-num" value="087841697937"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div id="page-marquee" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Teks Berjalan (Marquee)</div></div>
+    <div class="f"><label class="lbl">Teks Marquee</label><textarea id="mq-text" style="min-height:50px">🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</textarea></div>
+    <div class="grid3">
+      <div class="f"><label class="lbl">Warna Background</label><div class="color-row"><input type="color" id="mq-bg" value="#D4537E" oninput="document.getElementById('mq-bg-h').value=this.value"><input type="text" id="mq-bg-h" value="#D4537E" style="font-family:'DM Mono',monospace" oninput="document.getElementById('mq-bg').value=this.value"></div></div>
+      <div class="f"><label class="lbl">Warna Teks</label><div class="color-row"><input type="color" id="mq-color" value="#ffffff" oninput="document.getElementById('mq-color-h').value=this.value"><input type="text" id="mq-color-h" value="#ffffff" style="font-family:'DM Mono',monospace" oninput="document.getElementById('mq-color').value=this.value"></div></div>
+      <div class="f"><label class="lbl">Kecepatan</label><select id="mq-speed"><option value="15">Lambat</option><option value="25" selected>Normal</option><option value="40">Cepat</option></select></div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div id="page-popup" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Popup Diskon / Promo</div></div>
+    <div class="ib info">💡 Popup muncul otomatis saat pengunjung pertama buka website. Tidak muncul lagi selama 24 jam setelah ditutup.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan Popup?</label><select id="popup-aktif" onchange="updateStatus('st-popup',this.value)"><option value="ya">Ya, tampilkan</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Muncul setelah (detik)</label><input type="number" id="popup-delay" value="2" min="0" max="30"></div>
+    </div>
+    <div class="f"><label class="lbl">Emoji / Ikon Besar</label><input type="text" id="popup-emoji" value="🎀"></div>
+    <div class="f"><label class="lbl">Judul Popup</label><input type="text" id="popup-title" value="Selamat Datang di Glowthrf!"></div>
+    <div class="f"><label class="lbl">Teks Promo</label><input type="text" id="popup-promo" value="GRATIS ONGKIR untuk pembelian pertama!"></div>
+    <div class="f"><label class="lbl">Deskripsi</label><textarea id="popup-desc" style="min-height:50px">Gunakan kode promo saat konfirmasi order via WhatsApp</textarea></div>
+    <div class="f"><label class="lbl">Kode Promo <span>(kosongkan jika tidak ada)</span></label><input type="text" id="popup-kode" value="GLOWTHRF10"></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol Utama</label><input type="text" id="popup-btn" value="Belanja Sekarang"></div>
+      <div class="f"><label class="lbl">Link Tombol</label><input type="text" id="popup-link" value="#produk"></div>
+    </div>
+    <div class="f"><label class="lbl">Teks Tombol Lewati</label><input type="text" id="popup-close" value="Tidak, terima kasih"></div>
+  </div>
+</div>
+
+<!-- BANNER TIMER -->
+<div id="page-banner" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Banner Promo + Countdown Timer</div></div>
+    <div class="ib info">💡 Banner tampil di paling atas website dengan hitung mundur waktu berakhirnya promo. Cocok untuk flash sale.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan Banner?</label><select id="banner-aktif" onchange="updateStatus('st-banner',this.value)"><option value="ya">Ya, tampilkan</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Tanggal &amp; Waktu Berakhir</label><input type="datetime-local" id="banner-end" value="2025-12-31T23:59"></div>
+    </div>
+    <div class="f"><label class="lbl">Teks Banner</label><input type="text" id="banner-text" value="🔥 FLASH SALE — Diskon hingga 30% untuk semua produk!"></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Warna Background Banner</label><div class="color-row"><input type="color" id="banner-bg" value="#D4537E" oninput="document.getElementById('banner-bg-h').value=this.value"><input type="text" id="banner-bg-h" value="#D4537E" style="font-family:'DM Mono',monospace" oninput="document.getElementById('banner-bg').value=this.value"></div></div>
+      <div class="f"><label class="lbl">Warna Teks</label><div class="color-row"><input type="color" id="banner-color" value="#ffffff" oninput="document.getElementById('banner-color-h').value=this.value"><input type="text" id="banner-color-h" value="#ffffff" style="font-family:'DM Mono',monospace" oninput="document.getElementById('banner-color').value=this.value"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUK -->
+<div id="page-produk" class="page">
+  <div class="card">
+    <div class="card-hd"><div class="card-title"><span class="dot"></span>Daftar Produk <span class="badge bp" id="produk-badge" style="margin-left:6px">9 produk</span></div><button class="btn btn-pk" onclick="openModal('mp')">+ Tambah Produk</button></div>
+    <div id="produk-list"></div>
+  </div>
+</div>
+
+<!-- NEW ARRIVALS -->
+<div id="page-newarrivals" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Section New Arrivals</div></div>
+    <div class="ib info">💡 Centang produk yang masuk section "New Arrivals". Section ini tampil terpisah di atas koleksi utama.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan?</label><select id="na-aktif"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Judul Section</label><input type="text" id="na-title" value="New Arrivals"></div>
+    </div>
+    <div class="f"><label class="lbl">Subjudul</label><input type="text" id="na-sub" value="Koleksi terbaru yang baru saja hadir"></div>
+    <hr class="section-sep">
+    <div class="lbl" style="margin-bottom:10px">Pilih produk yang masuk New Arrivals:</div>
+    <div id="na-produk-list"></div>
+  </div>
+</div>
+
+<!-- BEST SELLER -->
+<div id="page-bestseller" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Section Best Seller</div></div>
+    <div class="ib info">💡 Section "Best Seller" tampil terpisah dan menonjolkan produk terlaris.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan?</label><select id="bs-aktif"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Judul Section</label><input type="text" id="bs-title" value="Best Seller"></div>
+    </div>
+    <div class="f"><label class="lbl">Subjudul</label><input type="text" id="bs-sub" value="Produk terlaris pilihan pelanggan setia Glowthrf"></div>
+    <hr class="section-sep">
+    <div class="lbl" style="margin-bottom:10px">Pilih produk yang masuk Best Seller:</div>
+    <div id="bs-produk-list"></div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div id="page-filter" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Filter Produk</div></div>
+    <div class="ib info">💡 Filter tampil di atas koleksi produk. Pengunjung bisa filter by kategori, harga, dan ukuran.</div>
+    <div class="f"><label class="lbl">Aktifkan Filter?</label><select id="filter-aktif" onchange="updateStatus('st-filter',this.value)"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+    <hr class="section-sep">
+    <div class="card-hd"><div class="card-title"><span class="dot"></span>Kategori</div><button class="btn btn-sm btn-pk" onclick="addKategori()">+ Tambah</button></div>
+    <div id="kategori-list"></div>
+    <hr class="section-sep">
+    <div class="grid2">
+      <div class="f"><label class="lbl">Harga Minimum (Rp)</label><input type="number" id="filter-min" value="0"></div>
+      <div class="f"><label class="lbl">Harga Maksimum (Rp)</label><input type="number" id="filter-max" value="500000"></div>
+    </div>
+    <hr class="section-sep">
+    <div class="card-hd"><div class="card-title"><span class="dot"></span>Ukuran Filter</div><button class="btn btn-sm btn-pk" onclick="addUkuranFilter()">+ Tambah</button></div>
+    <div id="ukuran-filter-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+    <hr class="section-sep">
+    <div class="card-hd"><div class="card-title"><span class="dot"></span>Warna Filter</div><button class="btn btn-sm btn-pk" onclick="addWarnaFilter()">+ Tambah</button></div>
+    <div class="ib info" style="margin-top:6px">Format di produk: Hitam:#000000, Putih:#FFFFFF</div>
+    <div id="warna-filter-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+  </div>
+</div>
+
+<!-- KERANJANG -->
+<div id="page-keranjang" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Keranjang Belanja</div></div>
+    <div class="ib info">💡 Keranjang memungkinkan pembeli menambah beberapa produk lalu checkout sekaligus via WhatsApp.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan Keranjang?</label><select id="cart-aktif" onchange="updateStatus('st-cart',this.value)"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Teks Tombol Tambah</label><input type="text" id="cart-btn-text" value="Tambah ke Keranjang"></div>
+    </div>
+    <div class="f"><label class="lbl">Template Pesan WA saat Checkout</label><textarea id="cart-wa-tpl" style="min-height:100px">Halo Glowthrf! Saya mau order:
+
+{ITEMS}
+
+Total: Rp {TOTAL}
+Mohon konfirmasi ketersediaan dan info pengiriman. Terima kasih!</textarea></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol Checkout</label><input type="text" id="cart-checkout-text" value="📲 Checkout via WhatsApp"></div>
+      <div class="f"><label class="lbl">Teks Keranjang Kosong</label><input type="text" id="cart-empty-text" value="Keranjang kamu masih kosong. Yuk belanja!"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WISHLIST -->
+<div id="page-wishlist" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Wishlist</div></div>
+    <div class="ib info">💡 Wishlist memungkinkan pengunjung menyimpan produk favorit. Data tersimpan di browser pengunjung.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan Wishlist?</label><select id="wl-aktif" onchange="updateStatus('st-wl',this.value)"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Teks Tombol Tambah</label><input type="text" id="wl-add-text" value="❤ Simpan ke Wishlist"></div>
+    </div>
+    <div class="f"><label class="lbl">Teks Sudah di Wishlist</label><input type="text" id="wl-saved-text" value="❤ Tersimpan di Wishlist"></div>
+    <div class="f"><label class="lbl">Teks Wishlist Kosong</label><input type="text" id="wl-empty-text" value="Belum ada produk di wishlist kamu."></div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="page-detail" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Halaman Detail Produk</div></div>
+    <div class="ib info">💡 Setiap produk bisa diklik untuk membuka halaman detail lengkap dengan foto besar, pilih ukuran/warna, dan tombol order.</div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Teks Tombol Order</label><input type="text" id="det-order-text" value="Order via WhatsApp"></div>
+      <div class="f"><label class="lbl">Teks Tombol Kembali</label><input type="text" id="det-back-text" value="← Kembali ke Koleksi"></div>
+    </div>
+    <div class="f"><label class="lbl">Label Stok Tersedia</label><input type="text" id="det-stok-ada" value="✅ Stok Tersedia"></div>
+    <div class="f"><label class="lbl">Label Stok Habis</label><input type="text" id="det-stok-habis" value="❌ Stok Habis"></div>
+    <div class="f"><label class="lbl">Judul Produk Serupa</label><input type="text" id="det-related" value="Produk Serupa"></div>
+  </div>
+</div>
+
+<!-- UKURAN -->
+<div id="page-ukuran" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Ukuran Default</div><button class="btn btn-sm btn-pk" onclick="addUkuran()">+ Tambah</button></div>
+    <div class="ib info">💡 Ukuran default tampil di setiap produk. Bisa di-override per produk di menu Koleksi Produk.</div>
+    <div id="ukuran-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Panduan Ukuran (Size Guide)</div></div>
+    <div class="f"><label class="lbl">Tampilkan Panduan Ukuran?</label><select id="size-guide-aktif"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+    <div class="f"><label class="lbl">Isi Panduan <span>(format: Ukuran|Lingkar Dada|Panjang, satu baris per ukuran)</span></label>
+      <textarea id="size-guide-text" style="min-height:100px">S|80-84 cm|55 cm
+M|85-89 cm|57 cm
+L|90-94 cm|59 cm
+XL|95-100 cm|61 cm</textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ULASAN -->
+<div id="page-ulasan" class="page">
+  <div class="card">
+    <div class="card-hd"><div class="card-title"><span class="dot"></span>Ulasan Pelanggan <span class="badge bp" id="ulasan-badge" style="margin-left:6px">6 ulasan</span></div><button class="btn btn-pk" onclick="openModal('mr')">+ Tambah</button></div>
+    <div id="ulasan-list"></div>
+  </div>
+</div>
+
+<!-- KEUNGGULAN -->
+<div id="page-keunggulan" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Poin Keunggulan Toko</div><button class="btn btn-sm btn-pk" onclick="addKeunggulan()">+ Tambah</button></div>
+    <div id="keunggulan-list"></div>
+  </div>
+</div>
+
+<!-- PEMBAYARAN -->
+<div id="page-pembayaran" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Rekening Bank <span class="badge bb" id="rek-badge" style="margin-left:6px">0</span></div><button class="btn btn-pk" onclick="openModal('mb')">+ Tambah Rekening</button></div>
+    <div id="bank-list"><p style="color:var(--tx3);padding:16px;text-align:center;font-size:12px">Belum ada rekening bank</p></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>E-Wallet <span class="badge bg" id="ew-badge" style="margin-left:6px">0</span></div><button class="btn btn-pk" onclick="openModal('me')">+ Tambah E-Wallet</button></div>
+    <div id="ewallet-list"><p style="color:var(--tx3);padding:16px;text-align:center;font-size:12px">Belum ada e-wallet</p></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>QRIS</div></div>
+    <div class="grid2">
+      <div>
+        <div class="f"><label class="lbl">Aktifkan QRIS?</label><select id="qris-aktif"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+        <div class="f"><label class="lbl">URL Gambar QRIS</label><input type="url" id="qris-img" placeholder="https://glowthrf.com/qris.jpg" oninput="upv('qris-pv',this.value)"></div>
+        <div class="f"><label class="lbl">Nama Merchant</label><input type="text" id="qris-nama" placeholder="Glowthrf Store"></div>
+      </div>
+      <div><label class="lbl">Preview QRIS</label><div class="img-prev" id="qris-pv" style="height:150px">📱</div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>COD (Bayar di Tempat)</div></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Aktifkan COD?</label><select id="cod-aktif"><option value="ya">Ya</option><option value="tidak">Tidak</option></select></div>
+      <div class="f"><label class="lbl">Area COD</label><input type="text" id="cod-area" value="Kosambi, Tangerang dan sekitarnya"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="page-footer" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Kontak &amp; Sosial Media</div></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Nomor WhatsApp</label><input type="tel" id="f-wa" value="087841697937"></div>
+      <div class="f"><label class="lbl">Username Instagram</label><input type="text" id="f-ig" value="glowthrf"></div>
+    </div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">URL Tokopedia</label><input type="url" id="f-toped" value="https://www.tokopedia.com/glowthrf"></div>
+      <div class="f"><label class="lbl">URL Shopee <span>(opsional)</span></label><input type="url" id="f-shopee" value=""></div>
+    </div>
+    <div class="f"><label class="lbl">Alamat / Kota</label><input type="text" id="f-city" value="Kosambi, Tangerang, Banten"></div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Teks Footer</div></div>
+    <div class="f"><label class="lbl">Nama Toko</label><input type="text" id="f-name" value="🎀 Glowthrf"></div>
+    <div class="f"><label class="lbl">Deskripsi Toko</label><textarea id="f-desc">Fashion wanita pilihan dengan harga terjangkau dan kualitas terbaik. Dikirim langsung dari Kosambi, Tangerang.</textarea></div>
+    <div class="f"><label class="lbl">Copyright</label><input type="text" id="f-copy" value="© 2025 Glowthrf Store. Kosambi, Tangerang, Banten."></div>
+  </div>
+</div>
+
+<!-- WARNA -->
+<div id="page-warna" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Warna Tema</div></div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px" id="color-swatches"></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Warna Utama</label><div class="color-row"><input type="color" id="c-primary" value="#D4537E" oninput="document.getElementById('c-primary-h').value=this.value"><input type="text" id="c-primary-h" value="#D4537E" style="font-family:'DM Mono',monospace" oninput="document.getElementById('c-primary').value=this.value"></div></div>
+      <div class="f"><label class="lbl">Warna Gelap</label><div class="color-row"><input type="color" id="c-dark" value="#9E3059" oninput="document.getElementById('c-dark-h').value=this.value"><input type="text" id="c-dark-h" value="#9E3059" style="font-family:'DM Mono',monospace" oninput="document.getElementById('c-dark').value=this.value"></div></div>
+    </div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Warna Terang</label><div class="color-row"><input type="color" id="c-light" value="#FBEAF0" oninput="document.getElementById('c-light-h').value=this.value"><input type="text" id="c-light-h" value="#FBEAF0" style="font-family:'DM Mono',monospace" oninput="document.getElementById('c-light').value=this.value"></div></div>
+      <div class="f"><label class="lbl">Warna Teks</label><div class="color-row"><input type="color" id="c-text" value="#1A0D12" oninput="document.getElementById('c-text-h').value=this.value"><input type="text" id="c-text-h" value="#1A0D12" style="font-family:'DM Mono',monospace" oninput="document.getElementById('c-text').value=this.value"></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Preset Tema</div></div>
+    <div id="theme-presets" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+  </div>
+</div>
+
+<!-- TIPOGRAFI -->
+<div id="page-tipografi" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Font &amp; Ukuran</div></div>
+    <div class="f"><label class="lbl">Font Utama</label>
+      <select id="font-main" onchange="document.getElementById('font-prev').style.fontFamily=this.value">
+        <option value="Plus Jakarta Sans" selected>Plus Jakarta Sans</option>
+        <option value="Poppins">Poppins</option><option value="Nunito">Nunito</option>
+        <option value="Raleway">Raleway</option><option value="Montserrat">Montserrat</option>
+        <option value="DM Sans">DM Sans</option><option value="Outfit">Outfit</option>
+        <option value="Quicksand">Quicksand</option><option value="Lato">Lato</option>
+      </select>
+      <div id="font-prev" style="padding:10px;border:1px solid var(--bdr);border-radius:var(--r);margin-top:7px;font-size:18px;font-weight:700;font-family:'Plus Jakarta Sans'">Glowthrf Fashion Store 2025</div>
+    </div>
+    <div class="grid3">
+      <div class="f"><label class="lbl">Font Body</label><select id="font-body"><option>13px</option><option selected>14px</option><option>15px</option><option>16px</option></select></div>
+      <div class="f"><label class="lbl">Heading H1</label><select id="font-h1"><option>2rem</option><option>2.2rem</option><option value="2.4rem" selected>2.4rem</option><option>2.8rem</option><option>3rem</option></select></div>
+      <div class="f"><label class="lbl">Heading H2</label><select id="font-h2"><option>1.6rem</option><option value="1.8rem" selected>1.8rem</option><option>2rem</option><option>2.2rem</option></select></div>
+    </div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Radius Tombol</label><select id="btn-r"><option value="4px">Kotak</option><option value="8px">Sedikit Bulat</option><option value="12px">Bulat</option><option value="24px" selected>Pil</option></select></div>
+      <div class="f"><label class="lbl">Radius Card Produk</label><select id="card-r"><option value="8px">Kecil</option><option value="12px" selected>Sedang</option><option value="16px">Besar</option><option value="20px">Sangat Besar</option></select></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO -->
+<div id="page-seo" class="page">
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>SEO &amp; Meta Tag</div></div>
+    <div class="f"><label class="lbl">Title Halaman</label><input type="text" id="seo-title" value="Glowthrf — Fashion Wanita Terkini | Kaos, Set, Rok Ruffles"></div>
+    <div class="f"><label class="lbl">Meta Description</label><textarea id="seo-desc" style="min-height:56px">Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles. Harga terjangkau, kualitas terbaik.</textarea></div>
+    <div class="f"><label class="lbl">Keywords</label><input type="text" id="seo-kw" value="fashion wanita, kaos graphic, set polkadot, rok ruffles, glowthrf"></div>
+    <div class="f"><label class="lbl">OG Image URL</label><input type="url" id="og-img" value="https://glowthrf.com/img6.png"></div>
+    <div class="f"><label class="lbl">Google Analytics ID <span>(opsional)</span></label><input type="text" id="ga-id" placeholder="G-XXXXXXXXXX"></div>
+  </div>
+</div>
+
+<!-- EXPORT -->
+<div id="page-export" class="page">
+  <div class="ib ok">✅ Semua perubahan tersimpan. Klik Export untuk download file website lengkap dengan semua fitur baru.</div>
+  <div class="grid2">
+    <div class="card" style="text-align:center;padding:28px 18px">
+      <div style="font-size:36px;margin-bottom:10px">📄</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:5px">index.html</div>
+      <div style="font-size:11px;color:var(--tx3);margin-bottom:16px">Website lengkap dengan semua fitur baru</div>
+      <button class="btn btn-pk" style="width:100%" onclick="doExport()">⬇ Download index.html</button>
+    </div>
+    <div class="card" style="text-align:center;padding:28px 18px">
+      <div style="font-size:36px;margin-bottom:10px">🗂</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:5px">Simpan Data Panel</div>
+      <div style="font-size:11px;color:var(--tx3);margin-bottom:16px">Simpan data sebagai JSON untuk lanjut nanti</div>
+      <button class="btn" style="width:100%" onclick="saveJSON()">⬇ Download data.json</button>
+    </div>
+  </div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Load Data Tersimpan</div></div>
+    <input type="file" id="load-json" accept=".json" onchange="loadJSON(this)" style="font-size:12px;padding:0;border:none">
+  </div>
+</div>
+
+  </div><!-- end content -->
+</div><!-- end main -->
+
+<!-- MODAL PRODUK -->
+<div class="overlay" id="modal-mp">
+  <div class="modal" style="width:min(600px,95vw)">
+    <div class="modal-hd"><div class="modal-title" id="mp-title">Tambah Produk</div><button class="modal-close" onclick="closeModal('mp')">×</button></div>
+    <input type="hidden" id="mp-idx" value="-1">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab(this,'mp-t1')">Info</div>
+      <div class="tab" onclick="switchTab(this,'mp-t2')">Gambar</div>
+      <div class="tab" onclick="switchTab(this,'mp-t3')">Ukuran &amp; Warna</div>
+      <div class="tab" onclick="switchTab(this,'mp-t4')">Order</div>
+      <div class="tab" onclick="switchTab(this,'mp-t5')">Stok &amp; Label</div>
+    </div>
+    <div class="tab-panel active" id="mp-t1">
+      <div class="f"><label class="lbl">Nama Produk</label><input type="text" id="mp-name" placeholder="Kaos Morning Feast"></div>
+      <div class="f"><label class="lbl">Deskripsi Singkat</label><textarea id="mp-desc" placeholder="Deskripsi singkat produk..."></textarea></div>
+      <div class="f"><label class="lbl">Deskripsi Detail <span>(tampil di halaman detail produk)</span></label><textarea id="mp-desc-long" style="min-height:90px" placeholder="Bahan, ukuran, cara cuci, keunggulan..."></textarea></div>
+      <div class="grid2">
+        <div class="f"><label class="lbl">Harga (Rp)</label><input type="number" id="mp-price" placeholder="80000" min="0"></div>
+        <div class="f"><label class="lbl">Harga Coret <span>(opsional)</span></label><input type="number" id="mp-price-old" placeholder="100000" min="0"></div>
+      </div>
+      <div class="grid2">
+        <div class="f"><label class="lbl">Kategori</label><input type="text" id="mp-kategori" placeholder="Kaos / Set / Rok / Shorts"></div>
+        <div class="f"><label class="lbl">Badge</label><select id="mp-badge"><option value="">— Tidak ada —</option><option>Bestseller</option><option>New</option><option>Favorit</option><option>Limited</option><option>Sale</option><option>2 Warna</option></select></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="mp-t2">
+      <div class="f"><label class="lbl">Foto Utama</label><input type="url" id="mp-img" placeholder="https://glowthrf.com/img1.jpg" oninput="upv('mp-img-pv',this.value)"></div>
+      <div class="img-prev" id="mp-img-pv" style="height:150px">🖼</div>
+      <div class="f" style="margin-top:10px"><label class="lbl">Foto Tambahan 2 <span>(opsional)</span></label><input type="url" id="mp-img2" placeholder="https://glowthrf.com/img..."></div>
+      <div class="f"><label class="lbl">Foto Tambahan 3 <span>(opsional)</span></label><input type="url" id="mp-img3" placeholder="https://glowthrf.com/img..."></div>
+    </div>
+    <div class="tab-panel" id="mp-t3">
+      <div class="f"><label class="lbl">Ukuran Tersedia <span>(pisah koma: S, M, L, XL)</span></label><input type="text" id="mp-ukuran" placeholder="S, M, L, XL" value="S, M, L, XL"></div>
+      <div class="f"><label class="lbl">Warna Tersedia <span>(NamaWarna:#hexkode, pisah koma)</span></label><input type="text" id="mp-warna" placeholder="Hitam:#1a1a1a, Putih:#ffffff, Pink:#D4537E"></div>
+      <div class="f"><label class="lbl">Catatan Ukuran <span>(opsional)</span></label><input type="text" id="mp-ukuran-note" placeholder="Rekomendasi: ukuran normal, tidak oversize"></div>
+    </div>
+    <div class="tab-panel" id="mp-t4">
+      <div class="f"><label class="lbl">Pesan WA saat Order</label><textarea id="mp-wa">Halo Glowthrf! Saya mau order </textarea></div>
+      <div class="f"><label class="lbl">Link Tokopedia Produk <span>(opsional)</span></label><input type="url" id="mp-toped" placeholder="https://www.tokopedia.com/glowthrf/..."></div>
+    </div>
+    <div class="tab-panel" id="mp-t5">
+      <div class="grid2">
+        <div class="f"><label class="lbl">Status Stok</label><select id="mp-stok"><option value="ada">Tersedia</option><option value="habis">Habis</option><option value="preorder">Pre-Order</option></select></div>
+        <div class="f"><label class="lbl">Masuk New Arrivals?</label><select id="mp-na"><option value="tidak">Tidak</option><option value="ya">Ya</option></select></div>
+      </div>
+      <div class="f"><label class="lbl">Masuk Best Seller?</label><select id="mp-bs"><option value="tidak">Tidak</option><option value="ya">Ya</option></select></div>
+    </div>
+    <div class="modal-ft"><button class="btn" onclick="closeModal('mp')">Batal</button><button class="btn btn-pk" onclick="saveProduct()">💾 Simpan Produk</button></div>
+  </div>
+</div>
+
+<!-- MODAL ULASAN -->
+<div class="overlay" id="modal-mr">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title" id="mr-title">Tambah Ulasan</div><button class="modal-close" onclick="closeModal('mr')">×</button></div>
+    <input type="hidden" id="mr-idx" value="-1">
+    <div class="f"><label class="lbl">Nama</label><input type="text" id="mr-name" placeholder="Aurel R."></div>
+    <div class="grid2">
+      <div class="f"><label class="lbl">Kota</label><input type="text" id="mr-loc" placeholder="Jakarta Selatan"></div>
+      <div class="f"><label class="lbl">Label</label><select id="mr-label"><option>Verified Buyer</option><option>Loyal Customer</option><option>Repeat Order</option></select></div>
+    </div>
+    <div class="f"><label class="lbl">Rating</label><select id="mr-stars"><option value="5" selected>★★★★★ (5)</option><option value="4">★★★★☆ (4)</option><option value="3">★★★☆☆ (3)</option></select></div>
+    <div class="f"><label class="lbl">Teks Ulasan</label><textarea id="mr-text" style="min-height:90px"></textarea></div>
+    <div class="modal-ft"><button class="btn" onclick="closeModal('mr')">Batal</button><button class="btn btn-pk" onclick="saveReview()">💾 Simpan</button></div>
+  </div>
+</div>
+
+<!-- MODAL BANK -->
+<div class="overlay" id="modal-mb">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title" id="mb-title">Tambah Rekening Bank</div><button class="modal-close" onclick="closeModal('mb')">×</button></div>
+    <input type="hidden" id="mb-idx" value="-1">
+    <div class="f"><label class="lbl">Bank</label><select id="mb-bank"><option value="">— Pilih Bank —</option><option>BCA</option><option>BRI</option><option>BNI</option><option>Mandiri</option><option>BSI</option><option>CIMB Niaga</option><option>Bank Jago</option><option>SeaBank</option><option>Blu by BCA</option><option>Lainnya</option></select></div>
+    <div class="f"><label class="lbl">Nama Bank <span>(jika Lainnya)</span></label><input type="text" id="mb-custom"></div>
+    <div class="f"><label class="lbl">Nomor Rekening</label><input type="text" id="mb-norek" style="font-family:'DM Mono',monospace" placeholder="5490871073"></div>
+    <div class="f"><label class="lbl">Atas Nama</label><input type="text" id="mb-nama"></div>
+    <div class="modal-ft"><button class="btn" onclick="closeModal('mb')">Batal</button><button class="btn btn-pk" onclick="saveBank()">💾 Simpan</button></div>
+  </div>
+</div>
+
+<!-- MODAL EWALLET -->
+<div class="overlay" id="modal-me">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title" id="me-title">Tambah E-Wallet</div><button class="modal-close" onclick="closeModal('me')">×</button></div>
+    <input type="hidden" id="me-idx" value="-1">
+    <div class="f"><label class="lbl">Platform</label><select id="me-platform"><option value="">— Pilih —</option><option>GoPay</option><option>OVO</option><option>Dana</option><option>ShopeePay</option><option>LinkAja</option><option>Lainnya</option></select></div>
+    <div class="f"><label class="lbl">Nomor / Username</label><input type="text" id="me-nomor" style="font-family:'DM Mono',monospace"></div>
+    <div class="f"><label class="lbl">Atas Nama</label><input type="text" id="me-nama"></div>
+    <div class="modal-ft"><button class="btn" onclick="closeModal('me')">Batal</button><button class="btn btn-pk" onclick="saveEwallet()">💾 Simpan</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ <span id="toast-msg">Tersimpan!</span></div>
+
+<script>
+// ============ DATA ============
+var D = {
+  products: [
+    {name:"Kaos Morning Feast",desc:'Baby tee graphic "A Morning Feast for the Soul"',descLong:'Bahan cotton combed 30s, adem dan nyaman dipakai seharian.',price:80000,priceOld:0,badge:"Bestseller",img:"https://glowthrf.com/img2.jpg",img2:"",img3:"",kategori:"Kaos",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Kaos Morning Feast",toped:"",stok:"ada",na:"tidak",bs:"ya"},
+    {name:"Kaos Not Today Club",desc:'Oversized tee "Not Today Club"',descLong:'Oversized fit, cocok untuk semua ukuran tubuh.',price:80000,priceOld:0,badge:"New",img:"https://glowthrf.com/img3.jpg",img2:"",img3:"",kategori:"Kaos",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Kaos Not Today Club",toped:"",stok:"ada",na:"ya",bs:"tidak"},
+    {name:"Kaos Tokyo 14",desc:'Baby tee sporty "Tokyo 14"',descLong:'Desain minimalis sporty. Bahan cotton combed 24s.',price:80000,priceOld:0,badge:"",img:"https://glowthrf.com/img1.jpg",img2:"",img3:"",kategori:"Kaos",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Kaos Tokyo 14",toped:"",stok:"ada",na:"tidak",bs:"tidak"},
+    {name:"Set Polkadot Rhinestone",desc:"Set tank top + mini skirt polkadot hitam berhias rhinestone",descLong:'Set lengkap tank top dan rok mini. Bahan crepe premium.',price:145000,priceOld:175000,badge:"Favorit",img:"https://glowthrf.com/img4.jpg",img2:"",img3:"",kategori:"Set",ukuran:"S, M, L",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Set Polkadot Rhinestone",toped:"",stok:"ada",na:"ya",bs:"ya"},
+    {name:"Korset Polkadot Cream",desc:"Bustier korset polkadot krem tali serut depan",descLong:'Bahan tweed premium dengan tali serut adjustable.',price:125000,priceOld:0,badge:"",img:"https://glowthrf.com/img5.jpg",img2:"",img3:"",kategori:"Korset",ukuran:"S, M, L",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Korset Polkadot Cream",toped:"",stok:"ada",na:"tidak",bs:"tidak"},
+    {name:"Set Ruffle Skirt — Look 01",desc:"Rok ruffles layer hitam dipadukan kaos Maryland",descLong:'Rok ruffle layer dengan detail rapi. Termasuk kaos dalam set.',price:135000,priceOld:0,badge:"New",img:"https://glowthrf.com/img6.png",img2:"",img3:"",kategori:"Set",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Ruffle Skirt Look 01",toped:"",stok:"ada",na:"ya",bs:"ya"},
+    {name:"Set Ruffle Skirt — Look 02",desc:"Rok ruffles layer + crop tee cokelat",descLong:'Kombinasi rok ruffle dengan crop tee warna earth tone.',price:135000,priceOld:0,badge:"",img:"https://glowthrf.com/img7.png",img2:"",img3:"",kategori:"Set",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Ruffle Skirt Look 02",toped:"",stok:"ada",na:"tidak",bs:"tidak"},
+    {name:"Shorts Hitam Kasual",desc:"Celana pendek hitam elastik pinggang tinggi",descLong:'Bahan twill stretch nyaman. Pinggang tinggi dengan karet elastis.',price:95000,priceOld:0,badge:"",img:"https://glowthrf.com/img9.jpg",img2:"",img3:"",kategori:"Celana",ukuran:"S, M, L, XL",warna:"",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Shorts Hitam Kasual",toped:"",stok:"ada",na:"tidak",bs:"tidak"},
+    {name:"Shorts Linen Drawstring",desc:"Shorts linen bertali tersedia Navy & Putih",descLong:'Bahan linen premium ringan dan adem. 2 pilihan warna.',price:105000,priceOld:0,badge:"2 Warna",img:"https://glowthrf.com/img10.jpg",img2:"",img3:"",kategori:"Celana",ukuran:"S, M, L, XL",warna:"Navy:#1B3A6B, Putih:#F5F5F5",ukuranNote:"",wa:"Halo Glowthrf! Saya mau order Shorts Linen Drawstring",toped:"",stok:"ada",na:"ya",bs:"tidak"}
+  ],
+  reviews: [
+    {name:"Aurel R.",loc:"Jakarta Selatan",label:"Verified Buyer",stars:5,text:"Kaos morning feast-nya bagus banget! Bahannya adem, jahitannya rapi. Pasti beli lagi!"},
+    {name:"Salsabila N.",loc:"Tangerang",label:"Verified Buyer",stars:5,text:"Set polkadot rhinestone-nya kece parah! Dipake ke kondangan banyak yang nanya beli dimana."},
+    {name:"Nadya K.",loc:"Bekasi",label:"Verified Buyer",stars:5,text:"Rok ruffle-nya lucuuu! Foto sama reality sama. Seller ramah dan responsif. Pasti balik lagi!"},
+    {name:"Dinda M.",loc:"Depok",label:"Verified Buyer",stars:5,text:"Shorts linen-nya adem banget. Beli 2 warna sekaligus. Harga terjangkau kualitas premium!"},
+    {name:"Rara F.",loc:"Bogor",label:"Verified Buyer",stars:5,text:"Korset polkadot cream-nya cantik. Bahannya berkualitas. Recommended!"},
+    {name:"Vanya P.",loc:"BSD City",label:"Loyal Customer",stars:5,text:"Udah langganan dari awal buka. Semua produknya konsisten bagus. Sukses terus Glowthrf!"}
+  ],
+  navLinks: [{text:"Produk",link:"#produk"},{text:"New Arrivals",link:"#newarrivals"},{text:"Best Seller",link:"#bestseller"},{text:"Ulasan",link:"#ulasan"},{text:"Kontak",link:"#kontak"}],
+  banks: [], ewallets: [],
+  keunggulan: [
+    {icon:"📦",title:"Pengiriman Cepat",desc:"Same-day & next-day dari Kosambi, Tangerang."},
+    {icon:"✅",title:"Kualitas Terjamin",desc:"Setiap produk dicek sebelum dikirim."},
+    {icon:"💬",title:"Respon Cepat",desc:"WhatsApp selalu aktif siap membantu."},
+    {icon:"🔄",title:"Mudah Retur",desc:"Produk cacat? Kami siap bantu retur."}
+  ],
+  kategori: ["Semua","Kaos","Set","Korset","Celana"],
+  ukuranFilter: ["S","M","L","XL"],
+  ukuranDefault: ["S","M","L","XL"],
+  warnaFilter: ["Hitam","Putih","Navy","Cream","Cokelat"],
+  payConfig: {
+    bca:     {norek:"5490871073",   nama:"Charina Cahayati", ket:"Tabungan - ATM - m-BCA - KlikBCA",        aktif:"ya"},
+    mandiri: {norek:"087841697937", nama:"Charina Cahayati", ket:"Tabungan - ATM - Livin by Mandiri",       aktif:"ya"},
+    bni:     {norek:"087841697937", nama:"Charina Cahayati", ket:"Tabungan - ATM - BNI Mobile Banking",     aktif:"ya"},
+    seabank: {norek:"087841697937", nama:"Charina Cahayati", ket:"Aplikasi SeaBank - Transfer antar bank",  aktif:"ya"},
+    ovo:     {norek:"087841697937", nama:"glowthrf",          ket:"Transfer saldo OVO ke nomor HP terdaftar",aktif:"ya"}
+  },
+  shipConfig: {
+    reg: {nama:"Reguler",  harga:0,     est:"3-7 hari kerja - JNE / J&T / SiCepat", aktif:"ya"},
+    exp: {nama:"Express",  harga:25000, est:"1-2 hari kerja",                        aktif:"ya"},
+    sam: {nama:"Same Day", harga:45000, est:"Jabodetabek - hari ini sebelum 12.00",  aktif:"ya"}
+  },
+  discConfig: {t1:{min:300000,pct:10},t2:{min:500000,pct:15},t3:{min:700000,pct:20}},
+  checkoutConfig: {batasBayar:24,confirmText:"Konfirmasi dan Pesan",catatan:"Item flash sale tidak dapat diretur/ditukar."},
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbz9XMAtVfkWn35UutPvFQcmYxY-GXQIKjEMlRdNJTF2EOQZfXepy6Z14K1gPH6DrZOr/exec"
+};
+
+// ============ ROUTING ============
+var PI = {dash:'Dashboard',hero:'Hero & Banner',nav:'Navigasi & Menu',marquee:'Teks Marquee',popup:'Popup Promo & Diskon',banner:'Banner Promo + Timer',produk:'Koleksi Produk',newarrivals:'New Arrivals',bestseller:'Best Seller',filter:'Filter Produk',keranjang:'Keranjang Belanja',wishlist:'Wishlist',detail:'Halaman Detail Produk',ukuran:'Ukuran & Warna',checkout:'Checkout & Pembayaran',pengiriman:'Pengiriman',diskon:'Diskon Belanja Otomatis',ulasan:'Ulasan Pelanggan',keunggulan:'Info Keunggulan',pembayaran:'Rekening & Pembayaran',footer:'Footer & Kontak',warna:'Warna & Tema',tipografi:'Font & Tipografi',seo:'SEO & Meta',export:'Export & Download'};
+
+function P(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  var pg = document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  if(el) el.classList.add('active');
+  document.getElementById('pt').textContent = PI[id]||id;
+  if(id==='produk') renderProducts();
+  if(id==='ulasan') renderReviews();
+  if(id==='keunggulan') renderKeunggulan();
+  if(id==='nav') renderNavLinks();
+  if(id==='filter'){renderKategori();renderUkuranFilter();renderWarnaFilter();}
+  if(id==='checkout'){renderCheckoutAdmin();}
+  if(id==='pengiriman'){renderPengirimanAdmin();}
+  if(id==='diskon'){renderDiskonAdmin();}
+  if(id==='ukuran') renderUkuranDefault();
+  if(id==='warna') renderColorPresets();
+  if(id==='newarrivals'||id==='bestseller') renderProductCheckboxes(id);
+  if(id==='pembayaran'){renderBanks();renderEwallets();}
+}
+function ni(id){return [...document.querySelectorAll('.ni')].find(n=>n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+id+"'"))||null;}
+function upv(id,url){var b=document.getElementById(id);if(!url){b.innerHTML='🖼';b.style.opacity='.4';return;}b.style.opacity='1';b.innerHTML='<img src="'+esc(url)+'" onerror="this.parentNode.innerHTML=\'🖼\'" style="width:100%;height:100%;object-fit:cover">';}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmt(n){return 'Rp '+Number(n).toLocaleString('id');}
+function toast(m){var t=document.getElementById('toast');document.getElementById('toast-msg').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function openModal(id){document.getElementById('modal-'+id).classList.add('open');}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('open');}
+function switchTab(el,panelId){var m=el.closest('.modal');m.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));m.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(panelId).classList.add('active');}
+function updateStatus(id,val){var el=document.getElementById(id);if(!el)return;el.textContent=val==='ya'?'Aktif':'Nonaktif';el.className='badge '+(val==='ya'?'bg':'bgr');}
+
+// ============ PRODUCTS ============
+function renderProducts(){
+  var el=document.getElementById('produk-list');
+  el.innerHTML=D.products.map((p,i)=>`
+    <div class="item-row pr">
+      <img class="item-thumb" src="${p.img}" onerror="this.src=''" alt="">
+      <div><div class="item-name">${esc(p.name)} ${p.badge?'<span class="badge bp">'+esc(p.badge)+'</span>':''} ${p.na==='ya'?'<span class="badge ba" style="font-size:9px">New</span>':''} ${p.bs==='ya'?'<span class="badge bg" style="font-size:9px">Hot</span>':''}</div><div class="item-sub">${esc(p.kategori||'')} · ${esc(p.ukuran||'')}</div></div>
+      <div class="item-price">${fmt(p.price)}</div>
+      <div><span class="badge ${p.stok==='ada'?'bg':p.stok==='preorder'?'ba':'bgr'}">${p.stok==='ada'?'Tersedia':p.stok==='preorder'?'Pre-Order':'Habis'}</span></div>
+      <button class="btn btn-sm" onclick="editProduct(${i})">✏ Edit</button>
+      <button class="btn btn-sm btn-danger" onclick="delProduct(${i})">🗑</button>
+    </div>`).join('');
+  var c=D.products.length;
+  document.getElementById('produk-badge').textContent=c+' produk';
+  document.getElementById('nc-produk').textContent=c;
+  document.getElementById('sv-produk').textContent=c;
+  document.getElementById('sv-new').textContent=D.products.filter(p=>p.na==='ya').length;
+  document.getElementById('sv-best').textContent=D.products.filter(p=>p.bs==='ya').length;
+}
+function editProduct(i){
+  var p=D.products[i];
+  document.getElementById('mp-idx').value=i;
+  document.getElementById('mp-title').textContent='Edit Produk';
+  ['name','desc','descLong','kategori','ukuran','warna','ukuranNote','wa','toped'].forEach(k=>{var el=document.getElementById('mp-'+k.replace('Long','-long').replace('Note','-note').replace('Kategori','kategori'));if(el)el.value=p[k]||'';});
+  document.getElementById('mp-name').value=p.name;
+  document.getElementById('mp-desc').value=p.desc||'';
+  document.getElementById('mp-desc-long').value=p.descLong||'';
+  document.getElementById('mp-price').value=p.price;
+  document.getElementById('mp-price-old').value=p.priceOld||0;
+  document.getElementById('mp-badge').value=p.badge||'';
+  document.getElementById('mp-img').value=p.img||'';
+  document.getElementById('mp-img2').value=p.img2||'';
+  document.getElementById('mp-img3').value=p.img3||'';
+  document.getElementById('mp-kategori').value=p.kategori||'';
+  document.getElementById('mp-ukuran').value=p.ukuran||'S, M, L, XL';
+  document.getElementById('mp-warna').value=p.warna||'';
+  document.getElementById('mp-ukuran-note').value=p.ukuranNote||'';
+  document.getElementById('mp-wa').value=p.wa||'';
+  document.getElementById('mp-toped').value=p.toped||'';
+  document.getElementById('mp-stok').value=p.stok||'ada';
+  document.getElementById('mp-na').value=p.na||'tidak';
+  document.getElementById('mp-bs').value=p.bs||'tidak';
+  upv('mp-img-pv',p.img);
+  openModal('mp');
+}
+function saveProduct(){
+  var idx=parseInt(document.getElementById('mp-idx').value);
+  var obj={
+    name:document.getElementById('mp-name').value.trim(),
+    desc:document.getElementById('mp-desc').value.trim(),
+    descLong:document.getElementById('mp-desc-long').value.trim(),
+    price:parseInt(document.getElementById('mp-price').value)||0,
+    priceOld:parseInt(document.getElementById('mp-price-old').value)||0,
+    badge:document.getElementById('mp-badge').value,
+    img:document.getElementById('mp-img').value.trim(),
+    img2:document.getElementById('mp-img2').value.trim(),
+    img3:document.getElementById('mp-img3').value.trim(),
+    kategori:document.getElementById('mp-kategori').value.trim(),
+    ukuran:document.getElementById('mp-ukuran').value.trim(),
+    warna:document.getElementById('mp-warna').value.trim(),
+    ukuranNote:document.getElementById('mp-ukuran-note').value.trim(),
+    wa:document.getElementById('mp-wa').value.trim(),
+    toped:document.getElementById('mp-toped').value.trim(),
+    stok:document.getElementById('mp-stok').value,
+    na:document.getElementById('mp-na').value,
+    bs:document.getElementById('mp-bs').value
+  };
+  if(!obj.name){alert('Nama produk wajib diisi');return;}
+  if(idx===-1) D.products.push(obj); else D.products[idx]=obj;
+  closeModal('mp');
+  // Reset for next add
+  document.getElementById('mp-idx').value=-1;
+  document.getElementById('mp-title').textContent='Tambah Produk';
+  renderProducts();
+  toast(idx===-1?'✅ Produk ditambahkan!':'✅ Produk diperbarui!');
+}
+function delProduct(i){
+  if(confirm('Hapus produk "'+D.products[i].name+'"?')){
+    D.products.splice(i,1);renderProducts();toast('🗑 Produk dihapus');
+  }
+}
+function openAddProduct(){
+  document.getElementById('mp-idx').value=-1;
+  document.getElementById('mp-title').textContent='Tambah Produk';
+  ['mp-name','mp-desc','mp-desc-long','mp-img','mp-img2','mp-img3','mp-kategori','mp-warna','mp-ukuran-note','mp-toped'].forEach(id=>{var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('mp-price').value='';
+  document.getElementById('mp-price-old').value='';
+  document.getElementById('mp-badge').value='';
+  document.getElementById('mp-ukuran').value='S, M, L, XL';
+  document.getElementById('mp-wa').value='Halo Glowthrf! Saya mau order ';
+  document.getElementById('mp-stok').value='ada';
+  document.getElementById('mp-na').value='tidak';
+  document.getElementById('mp-bs').value='tidak';
+  document.getElementById('mp-img-pv').innerHTML='🖼';
+  openModal('mp');
+}
+
+// ============ REVIEWS ============
+function renderReviews(){
+  var el=document.getElementById('ulasan-list');
+  el.innerHTML=D.reviews.map((r,i)=>`
+    <div class="item-row" style="grid-template-columns:32px 1fr auto auto auto">
+      <div style="width:30px;height:30px;border-radius:50%;background:var(--pk-l);color:var(--pk);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px">${esc(r.name.charAt(0))}</div>
+      <div><div class="item-name">${esc(r.name)} <span style="font-weight:400;color:var(--tx3)">— ${esc(r.loc)}</span></div><div class="item-sub">${'★'.repeat(r.stars)} · ${esc(r.text).substring(0,70)}…</div></div>
+      <span class="badge bg">${esc(r.label)}</span>
+      <button class="btn btn-sm" onclick="editReview(${i})">✏</button>
+      <button class="btn btn-sm btn-danger" onclick="delReview(${i})">🗑</button>
+    </div>`).join('');
+  document.getElementById('ulasan-badge').textContent=D.reviews.length+' ulasan';
+  document.getElementById('nc-ulasan').textContent=D.reviews.length;
+  document.getElementById('sv-ulasan').textContent=D.reviews.length;
+}
+function editReview(i){
+  var r=D.reviews[i];
+  document.getElementById('mr-idx').value=i;document.getElementById('mr-title').textContent='Edit Ulasan';
+  document.getElementById('mr-name').value=r.name;document.getElementById('mr-loc').value=r.loc;
+  document.getElementById('mr-label').value=r.label;document.getElementById('mr-stars').value=r.stars;
+  document.getElementById('mr-text').value=r.text;openModal('mr');
+}
+function saveReview(){
+  var idx=parseInt(document.getElementById('mr-idx').value);
+  var obj={name:document.getElementById('mr-name').value.trim(),loc:document.getElementById('mr-loc').value.trim(),label:document.getElementById('mr-label').value,stars:parseInt(document.getElementById('mr-stars').value),text:document.getElementById('mr-text').value.trim()};
+  if(!obj.name||!obj.text){alert('Nama dan teks wajib diisi');return;}
+  if(idx===-1) D.reviews.push(obj); else D.reviews[idx]=obj;
+  closeModal('mr');renderReviews();toast('✅ Ulasan disimpan!');
+}
+function delReview(i){if(confirm('Hapus ulasan?')){D.reviews.splice(i,1);renderReviews();toast('🗑 Ulasan dihapus');}}
+
+// ============ KEUNGGULAN ============
+function renderKeunggulan(){
+  document.getElementById('keunggulan-list').innerHTML=D.keunggulan.map((k,i)=>`
+    <div class="card" style="margin-bottom:8px">
+      <div style="display:grid;grid-template-columns:70px 1fr auto;gap:8px;align-items:end;margin-bottom:8px">
+        <div class="f" style="margin:0"><label class="lbl">Ikon</label><input type="text" value="${esc(k.icon)}" oninput="D.keunggulan[${i}].icon=this.value" style="font-size:18px;text-align:center"></div>
+        <div class="f" style="margin:0"><label class="lbl">Judul</label><input type="text" value="${esc(k.title)}" oninput="D.keunggulan[${i}].title=this.value"></div>
+        <button class="btn btn-sm btn-danger" onclick="D.keunggulan.splice(${i},1);renderKeunggulan()">🗑</button>
+      </div>
+      <div class="f" style="margin:0"><label class="lbl">Deskripsi</label><textarea oninput="D.keunggulan[${i}].desc=this.value" style="min-height:44px">${esc(k.desc)}</textarea></div>
+    </div>`).join('');
+}
+function addKeunggulan(){D.keunggulan.push({icon:'⭐',title:'Keunggulan Baru',desc:'Deskripsi keunggulan...'});renderKeunggulan();}
+
+// ============ NAV LINKS ============
+function renderNavLinks(){
+  document.getElementById('nav-links').innerHTML=D.navLinks.map((n,i)=>`
+    <div class="link-row">
+      <div><label class="lbl">Teks</label><input type="text" value="${esc(n.text)}" oninput="D.navLinks[${i}].text=this.value"></div>
+      <div><label class="lbl">Link</label><input type="text" value="${esc(n.link)}" oninput="D.navLinks[${i}].link=this.value"></div>
+      <button class="btn btn-sm btn-danger" style="margin-top:18px" onclick="D.navLinks.splice(${i},1);renderNavLinks()">🗑</button>
+    </div>`).join('');
+}
+function addNavLink(){D.navLinks.push({text:'Menu Baru',link:'#'});renderNavLinks();}
+
+// ============ FILTER ============
+function renderKategori(){
+  document.getElementById('kategori-list').innerHTML=D.kategori.map((k,i)=>`
+    <div style="display:flex;gap:7px;align-items:center;margin-bottom:6px">
+      <input type="text" value="${esc(k)}" oninput="D.kategori[${i}]=this.value" style="flex:1">
+      <button class="btn btn-sm btn-danger" onclick="D.kategori.splice(${i},1);renderKategori()">🗑</button>
+    </div>`).join('');
+}
+function addKategori(){D.kategori.push('Kategori Baru');renderKategori();}
+function renderUkuranFilter(){
+  var el=document.getElementById('ukuran-filter-list');
+  el.innerHTML=D.ukuranFilter.map((u,i)=>`
+    <div style="display:flex;align-items:center;gap:4px;background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600">
+      ${esc(u)}<button onclick="D.ukuranFilter.splice(${i},1);renderUkuranFilter()" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:14px;line-height:1;padding:0 0 0 3px">×</button>
+    </div>`).join('');
+}
+function addUkuranFilter(){var v=prompt('Ukuran baru (misal: XXL):');if(v&&v.trim()){D.ukuranFilter.push(v.trim());renderUkuranFilter();}}
+
+// ============ UKURAN DEFAULT ============
+function renderUkuranDefault(){
+  var el=document.getElementById('ukuran-list');
+  el.innerHTML=D.ukuranDefault.map((u,i)=>`
+    <div style="display:flex;align-items:center;gap:4px;background:var(--pk-l);border:1px solid var(--bdr2);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--pk-d)">
+      ${esc(u)}<button onclick="D.ukuranDefault.splice(${i},1);renderUkuranDefault()" style="background:none;border:none;cursor:pointer;color:var(--red);font-size:15px;line-height:1;padding:0 0 0 4px">×</button>
+    </div>`).join('');
+}
+function addUkuran(){var v=prompt('Tambah ukuran baru:');if(v&&v.trim()){D.ukuranDefault.push(v.trim());renderUkuranDefault();}}
+
+// ============ PRODUCT CHECKBOXES (NA/BS) ============
+function renderProductCheckboxes(pageId){
+  var isNA=pageId==='newarrivals';
+  var elId=isNA?'na-produk-list':'bs-produk-list';
+  var key=isNA?'na':'bs';
+  document.getElementById(elId).innerHTML=D.products.map((p,i)=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr)">
+      <input type="checkbox" id="${pageId}-cb-${i}" ${p[key]==='ya'?'checked':''} onchange="D.products[${i}]['${key}']=this.checked?'ya':'tidak';refreshStats()" style="width:16px;height:16px;accent-color:var(--pk);flex-shrink:0">
+      <img src="${p.img}" style="width:40px;height:40px;object-fit:cover;border-radius:7px;flex-shrink:0" onerror="this.style.display='none'">
+      <label for="${pageId}-cb-${i}" style="font-size:12px;font-weight:500;cursor:pointer">${esc(p.name)} <span style="color:var(--tx3);font-weight:400">${fmt(p.price)}</span></label>
+    </div>`).join('');
+}
+function refreshStats(){
+  document.getElementById('sv-new').textContent=D.products.filter(p=>p.na==='ya').length;
+  document.getElementById('sv-best').textContent=D.products.filter(p=>p.bs==='ya').length;
+}
+
+// ============ BANK & EWALLET ============
+function renderBanks(){
+  var el=document.getElementById('bank-list');
+  document.getElementById('rek-badge').textContent=D.banks.length;
+  if(!D.banks.length){el.innerHTML='<p style="color:var(--tx3);padding:16px;text-align:center;font-size:12px">Belum ada rekening bank</p>';return;}
+  el.innerHTML=D.banks.map((b,i)=>`
+    <div class="item-row" style="grid-template-columns:1fr auto auto">
+      <div><div class="item-name">${esc(b.custom||b.bank)}</div><div style="font-family:'DM Mono',monospace;font-size:13px;color:var(--pk);font-weight:700">${esc(b.norek)}</div><div class="item-sub">a.n. ${esc(b.nama)}</div></div>
+      <button class="btn btn-sm" onclick="editBank(${i})">✏</button>
+      <button class="btn btn-sm btn-danger" onclick="D.banks.splice(${i},1);renderBanks()">🗑</button>
+    </div>`).join('');
+}
+function editBank(i){var b=D.banks[i];document.getElementById('mb-idx').value=i;document.getElementById('mb-title').textContent='Edit Rekening';document.getElementById('mb-bank').value=b.bank||'';document.getElementById('mb-custom').value=b.custom||'';document.getElementById('mb-norek').value=b.norek||'';document.getElementById('mb-nama').value=b.nama||'';openModal('mb');}
+function saveBank(){
+  var idx=parseInt(document.getElementById('mb-idx').value);
+  var obj={bank:document.getElementById('mb-bank').value,custom:document.getElementById('mb-custom').value.trim(),norek:document.getElementById('mb-norek').value.trim(),nama:document.getElementById('mb-nama').value.trim()};
+  if(!obj.norek||!obj.nama){alert('Nomor rekening dan nama wajib diisi');return;}
+  if(idx===-1) D.banks.push(obj); else D.banks[idx]=obj;
+  closeModal('mb');renderBanks();toast('✅ Rekening disimpan!');
+}
+function renderEwallets(){
+  var el=document.getElementById('ewallet-list');
+  document.getElementById('ew-badge').textContent=D.ewallets.length;
+  if(!D.ewallets.length){el.innerHTML='<p style="color:var(--tx3);padding:16px;text-align:center;font-size:12px">Belum ada e-wallet</p>';return;}
+  el.innerHTML=D.ewallets.map((e,i)=>`
+    <div class="item-row" style="grid-template-columns:1fr auto auto">
+      <div><div class="item-name">${esc(e.platform)}</div><div style="font-family:'DM Mono',monospace;font-size:13px;color:var(--pk);font-weight:700">${esc(e.nomor)}</div><div class="item-sub">a.n. ${esc(e.nama)}</div></div>
+      <button class="btn btn-sm" onclick="editEwallet(${i})">✏</button>
+      <button class="btn btn-sm btn-danger" onclick="D.ewallets.splice(${i},1);renderEwallets()">🗑</button>
+    </div>`).join('');
+}
+function editEwallet(i){var e=D.ewallets[i];document.getElementById('me-idx').value=i;document.getElementById('me-title').textContent='Edit E-Wallet';document.getElementById('me-platform').value=e.platform||'';document.getElementById('me-nomor').value=e.nomor||'';document.getElementById('me-nama').value=e.nama||'';openModal('me');}
+function saveEwallet(){
+  var idx=parseInt(document.getElementById('me-idx').value);
+  var obj={platform:document.getElementById('me-platform').value,nomor:document.getElementById('me-nomor').value.trim(),nama:document.getElementById('me-nama').value.trim()};
+  if(!obj.nomor||!obj.nama){alert('Nomor dan nama wajib diisi');return;}
+  if(idx===-1) D.ewallets.push(obj); else D.ewallets[idx]=obj;
+  closeModal('me');renderEwallets();toast('✅ E-Wallet disimpan!');
+}
+
+// ============ COLOR PRESETS ============
+var CP=[{name:"Pink Rose",p:"#D4537E",d:"#9E3059",l:"#FBEAF0"},{name:"Coral",p:"#E8715A",d:"#B5432F",l:"#FEF0ED"},{name:"Purple",p:"#7C5CBF",d:"#5438A0",l:"#F0EBFA"},{name:"Teal",p:"#1D9E75",d:"#0F6E56",l:"#E1F5EE"},{name:"Orange",p:"#E87C2A",d:"#B55B10",l:"#FEF3E8"},{name:"Indigo",p:"#4A6CF7",d:"#2A45D0",l:"#EEF1FE"},{name:"Sage",p:"#6B8F71",d:"#45634A",l:"#EEF4EF"},{name:"Black",p:"#1A1A1A",d:"#000",l:"#F0F0F0"},{name:"Gold",p:"#B8860B",d:"#8B6508",l:"#FDF6DC"}];
+function renderColorPresets(){
+  document.getElementById('color-swatches').innerHTML=CP.map((c,i)=>`<div class="swatch" title="${c.name}" style="background:${c.p}" onclick="applyPreset(${i})"></div>`).join('');
+  document.getElementById('theme-presets').innerHTML=CP.map((c,i)=>`
+    <div class="card" style="cursor:pointer;padding:12px;text-align:center;transition:all .15s" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''" onclick="applyPreset(${i})">
+      <div style="display:flex;gap:5px;justify-content:center;margin-bottom:7px">
+        <div style="width:20px;height:20px;border-radius:50%;background:${c.p}"></div>
+        <div style="width:20px;height:20px;border-radius:50%;background:${c.d}"></div>
+        <div style="width:20px;height:20px;border-radius:50%;background:${c.l};border:1px solid #ddd"></div>
+      </div>
+      <div style="font-size:11px;font-weight:600">${c.name}</div>
+    </div>`).join('');
+}
+function applyPreset(i){
+  var c=CP[i];
+  document.getElementById('c-primary').value=c.p;document.getElementById('c-primary-h').value=c.p;
+  document.getElementById('c-dark').value=c.d;document.getElementById('c-dark-h').value=c.d;
+  document.getElementById('c-light').value=c.l;document.getElementById('c-light-h').value=c.l;
+  toast('🎨 Tema '+c.name+' diterapkan!');
+}
+
+// ============ SAVE / LOAD ============
+function saveJSON(){
+  var blob=new Blob([JSON.stringify({D},null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='glowthrf-data.json';a.click();
+  toast('✅ Data JSON disimpan!');
+}
+function loadJSON(input){
+  var f=input.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=e=>{try{var p=JSON.parse(e.target.result);if(p.D)Object.assign(D,p.D);toast('✅ Data berhasil dimuat!');renderProducts();}catch(err){alert('File tidak valid');}};
+  r.readAsText(f);
+}
+
+// ============ EXPORT ============
+function doExport(){
+  try {
+    var html=buildHTML();
+    if(!html||html.length<100){toast('Error: gagal generate HTML');return;}
+    var blob=new Blob([html],{type:'text/html'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    toast('✅ index.html berhasil diunduh!');
+  } catch(e) {
+    alert('Export gagal: '+e.message);
+    console.error('Export error:', e);
+  }
+}
+
+function gv(id){var el=document.getElementById(id);return el?(el.value||''):''}
+
+function buildHTML(){
+  var wa=gv('f-wa')||'087841697937';
+  var ig=gv('f-ig')||'glowthrf';
+  var toped=gv('f-toped');var shopee=gv('f-shopee');
+  var city=gv('f-city')||'Kosambi, Tangerang';
+  var fname=gv('f-name')||'🎀 Glowthrf';
+  var fdesc=gv('f-desc');var fcopy=gv('f-copy');
+  var hbadge=gv('h-badge');var hheading=gv('h-heading');var hem=gv('h-em');
+  var hdesc=gv('h-desc');var hbtn1=gv('h-btn1')||'Lihat Koleksi';var hlink1=gv('h-link1')||'#produk';
+  var hbtn2=gv('h-btn2');var hlink2=gv('h-link2')||toped;
+  var himg1=gv('h-img1');var himg2=gv('h-img2');var himg3=gv('h-img3');
+  var mqText=gv('mq-text');var mqBg=gv('mq-bg-h')||'#D4537E';var mqColor=gv('mq-color-h')||'#fff';var mqSpeed=gv('mq-speed')||'25';
+  var primary=gv('c-primary-h')||'#D4537E';var dark=gv('c-dark-h')||'#9E3059';var light=gv('c-light-h')||'#FBEAF0';var txColor=gv('c-text-h')||'#1A0D12';
+  var fontMain=gv('font-main')||'Plus Jakarta Sans';var bodySize=gv('font-body')||'14px';var h1Size=gv('font-h1')||'2.4rem';var h2Size=gv('font-h2')||'1.8rem';var btnR=gv('btn-r')||'24px';var cardR=gv('card-r')||'12px';
+  var seoTitle=gv('seo-title')||'Glowthrf';var seoDesc=gv('seo-desc');var seoKw=gv('seo-kw');var ogImg=gv('og-img');var gaId=gv('ga-id');
+  var navLogo=gv('nav-logo');var navBrand=gv('nav-brand')||'GLOWTHRF';var navWaText=gv('nav-wa-text')||'💬 Chat WA';
+  var popupAktif=gv('popup-aktif');var popupDelay=gv('popup-delay')||'2';var popupEmoji=gv('popup-emoji')||'🎀';
+  var popupTitle=gv('popup-title');var popupPromo=gv('popup-promo');var popupDesc=gv('popup-desc');var popupKode=gv('popup-kode');var popupBtn=gv('popup-btn')||'Belanja Sekarang';var popupLink=gv('popup-link')||'#produk';var popupClose=gv('popup-close')||'Tidak, terima kasih';
+  var bannerAktif=gv('banner-aktif');var bannerEnd=gv('banner-end');var bannerText=gv('banner-text');var bannerBg=gv('banner-bg-h')||'#D4537E';var bannerColor=gv('banner-color-h')||'#fff';
+  var filterAktif=gv('filter-aktif');var filterMin=gv('filter-min')||'0';var filterMax=gv('filter-max')||'500000';
+  var cartAktif=gv('cart-aktif');var cartBtnText=gv('cart-btn-text')||'Tambah ke Keranjang';var cartWaTpl=gv('cart-wa-tpl');var cartCheckoutText=gv('cart-checkout-text')||'Checkout via WhatsApp';var cartEmptyText=gv('cart-empty-text')||'Keranjang masih kosong';
+  var wlAktif=gv('wl-aktif');var wlEmptyText=gv('wl-empty-text')||'Belum ada produk di wishlist';
+  var detOrderText=gv('det-order-text')||'Order via WhatsApp';var detBackText=gv('det-back-text')||'← Kembali';var detStokAda=gv('det-stok-ada')||'✅ Stok Tersedia';var detStokHabis=gv('det-stok-habis')||'❌ Stok Habis';
+  // Dynamic config from admin panels
+  var pc=D.payConfig||{};var sc=D.shipConfig||{};
+  var dc=D.discConfig||{t1:{min:300000,pct:10},t2:{min:500000,pct:15},t3:{min:700000,pct:20}};
+  var cc=D.checkoutConfig||{batasBayar:24,confirmText:'Konfirmasi dan Pesan',catatan:''};
+  // Payment options HTML
+  var payMethods=[{id:'bca',label:'BCA',bg:'#003087',fg:'#fff'},{id:'mandiri',label:'Mandiri',bg:'#003F8A',fg:'#FFD700'},{id:'bni',label:'BNI',bg:'#F77F00',fg:'#fff'},{id:'seabank',label:'SeaBank',bg:'#2B3595',fg:'#fff'},{id:'ovo',label:'OVO',bg:'#4C3494',fg:'#fff'}];
+  var payOptsHTML='';var firstPay=true;
+  payMethods.forEach(function(m){var cfg=pc[m.id]||{};if(cfg.aktif==='tidak')return;var sel=firstPay?' sel':'';firstPay=false;var ket=cfg.ket?'<div style="font-size:11px;color:#888;margin-top:3px">'+cfg.ket+'</div>':'';payOptsHTML+='<div class="pay-opt'+sel+'" id="pay-'+m.id+'" onclick="selPay(\x27'+m.id+'\x27,this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:'+m.bg+';color:'+m.fg+';font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">'+m.label+'</span><span style="font-size:13px;font-weight:700">Transfer '+m.label+'</span></div>'+ket+'</div>';});
+  // Shipping options HTML
+  var shipMethods=[{id:'reg',icon:'🚚'},{id:'exp',icon:'⚡'},{id:'sam',icon:'🏃'}];
+  var shipOptsHTML='';var firstShip=true;
+  shipMethods.forEach(function(m){var cfg=sc[m.id]||{};if(cfg.aktif==='tidak')return;var sel=firstShip?' sel':'';firstShip=false;var h=cfg.harga||0;var hl=h===0?'GRATIS':'Rp '+h.toLocaleString('id');shipOptsHTML+='<div class="ship-opt'+sel+'" id="ship-'+m.id+'" onclick="selShip(\x27'+m.id+'\x27,this)"><div><div style="font-size:13px;font-weight:700">'+cfg.nama+'</div><div style="font-size:11px;color:#888;margin-top:2px">'+cfg.est+'</div></div><div style="font-size:13px;font-weight:700;color:#2E7D52">'+hl+'</div></div>';});
+  // Disc tiers
+  var discTiers=[];[dc.t3,dc.t2,dc.t1].forEach(function(t){if(t&&t.min>0&&t.pct>0)discTiers.push({min:t.min,pct:t.pct});});
+  var discTiersJSON=JSON.stringify(discTiers);
+  var maxTierMin=discTiers.length>0?discTiers[0].min:700000;
+  var spendLabels=[dc.t1,dc.t2,dc.t3].filter(function(t){return t&&t.min>0&&t.pct>0;}).map(function(t){return '<span>Rp '+(t.min/1000)+'K ('+t.pct+'%)</span>';}).join('');
+  var bankDataJSON=JSON.stringify(payMethods.reduce(function(obj,m){var cfg=pc[m.id]||{};if(cfg.aktif!=='tidak'){obj[m.id]={label:m.label,norek:cfg.norek||'',atasnama:cfg.nama||'',color:m.bg,textColor:m.fg};}return obj;},{}));
+  // Size guide
+  var sizeGuideAktif2=gv('size-guide-aktif');var sizeGuideText2=gv('size-guide-text');
+  var sgRows=[];if(sizeGuideAktif2==='ya'&&sizeGuideText2){sgRows=sizeGuideText2.split('\n').map(function(row){return row.split('|').map(function(col){return col.trim();});}).filter(function(r){return r.length>0&&r[0];});}
+  var sgDataJSON=JSON.stringify(sgRows);
+  var naAktif=gv('na-aktif');var naTitle=gv('na-title')||'New Arrivals';var naSub=gv('na-sub');
+  var bsAktif=gv('bs-aktif');var bsTitle=gv('bs-title')||'Best Seller';var bsSub=gv('bs-sub');
+  var qrisAktif=gv('qris-aktif');var qrisImg=gv('qris-img');var qrisNama=gv('qris-nama');
+  var codAktif=gv('cod-aktif');var codArea=gv('cod-area');
+  var sizeGuideAktif=gv('size-guide-aktif');var sizeGuideText=gv('size-guide-text');
+
+  function E(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function fmtR(n){return 'Rp '+Number(n).toLocaleString('id');}
+
+  var headingFinal=hem?E(hheading).replace(E(hem),'<em style="color:'+primary+';font-style:normal">'+E(hem)+'</em>'):E(hheading);
+
+  function makePCard(p,cls){
+    var imgs=[p.img,p.img2,p.img3].filter(Boolean);
+    var badges=[p.badge?'<span class="p-badge">'+E(p.badge)+'</span>':'',p.na==='ya'?'<span class="p-tag-new">New ✨</span>':'',p.bs==='ya'?'<span class="p-tag-hot">🔥 Terlaris</span>':''].join('');
+    var warnas=p.warna?p.warna.split(',').map(w=>{var pt=w.split(':');return{name:(pt[0]||'').trim(),hex:(pt[1]||'').trim()};}).filter(w=>w.name):[];
+    var ukurans=p.ukuran?p.ukuran.split(',').map(u=>u.trim()).filter(Boolean):[];
+    var pData=JSON.stringify(p).replace(/\\/g,'\\\\').replace(/"/g,"'").replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+    return `<div class="p-card${cls?' '+cls:''}" data-kat="${E(p.kategori||'')}" data-price="${p.price}" data-ukuran="${E(p.ukuran||'')}" onclick="openDetail(${pData})">
+      <div class="p-img-wrap">
+        ${imgs[0]?`<img src="${E(imgs[0])}" alt="${E(p.name)}" loading="lazy">`:'<div class="p-no-img">🖼</div>'}
+        ${badges}
+        ${p.stok==='habis'?'<div class="p-habis">Stok Habis</div>':''}
+        ${wlAktif==='ya'?`<button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'${E(p.name).replace(/'/g,"\\'")}')">♡</button>`:''}
+      </div>
+      <div class="p-info">
+        <div class="p-name">${E(p.name)}</div>
+        <div class="p-desc">${E(p.desc)}</div>
+        ${ukurans.length?'<div class="p-sizes">'+ukurans.map(u=>`<span>${E(u)}</span>`).join('')+'</div>':''}
+        <div class="p-price-row">
+          ${p.priceOld>0?`<span class="p-old">${fmtR(p.priceOld)}</span>`:''}
+          <span class="p-price">${fmtR(p.price)}</span>
+        </div>
+        ${cartAktif==='ya'&&p.stok!=='habis'?`<button class="p-cart" onclick="event.stopPropagation();addToCart('${E(p.name).replace(/'/g,"\\'")}',${p.price},'${E(p.img)}')">${E(cartBtnText)}</button>`:''}
+      </div>
+    </div>`;
+  }
+
+  var allProds=D.products.map(p=>makePCard(p,'')).join('');
+  var naProds=D.products.filter(p=>p.na==='ya').map(p=>makePCard(p,'na-card')).join('');
+  var bsProds=D.products.filter(p=>p.bs==='ya').map(p=>makePCard(p,'bs-card')).join('');
+  var reviewsHTML=D.reviews.map(r=>`<div class="rv-card"><div class="rv-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><p>"${E(r.text)}"</p><div class="rv-author"><div class="rv-av">${E(r.name.charAt(0))}</div><div><strong>${E(r.name)}</strong><br><small>${E(r.loc)} · ${E(r.label)}</small></div></div></div>`).join('');
+  var infoHTML=D.keunggulan.map(k=>`<div class="info-item"><span>${E(k.icon)}</span><h4>${E(k.title)}</h4><p>${E(k.desc)}</p></div>`).join('');
+  var navLinksHTML=D.navLinks.map(n=>`<li><a href="${E(n.link)}">${E(n.text)}</a></li>`).join('');
+  var katBtns=D.kategori.map(k=>`<button class="fb${k==='Semua'?' fa':''}" data-kat="${E(k)}" onclick="doFilter(this,'kat')">${E(k)}</button>`).join('');
+  var ukBtns=D.ukuranFilter.map(u=>`<button class="fb" data-uk="${E(u)}" onclick="doFilter(this,'uk')">${E(u)}</button>`).join('');
+
+  var payHTML='';
+  if(D.banks.length>0){payHTML+=`<div class="pay-grp"><h4>Transfer Bank</h4>${D.banks.map(b=>`<div class="pay-item"><div class="pay-bank">${E(b.custom||b.bank)}</div><div class="pay-norek">${E(b.norek)}</div><div class="pay-an">a.n. ${E(b.nama)}</div></div>`).join('')}</div>`;}
+  if(D.ewallets.length>0){payHTML+=`<div class="pay-grp"><h4>E-Wallet</h4>${D.ewallets.map(e=>`<div class="pay-item"><div class="pay-bank">${E(e.platform)}</div><div class="pay-norek">${E(e.nomor)}</div><div class="pay-an">a.n. ${E(e.nama)}</div></div>`).join('')}</div>`;}
+  if(qrisAktif==='ya'&&qrisImg){payHTML+=`<div class="pay-grp"><h4>QRIS</h4><div class="pay-qris"><img src="${E(qrisImg)}" alt="QRIS"><div><strong>${E(qrisNama)}</strong><br><small>Scan untuk bayar</small></div></div></div>`;}
+  if(codAktif==='ya'){payHTML+=`<div class="pay-grp"><h4>COD</h4><p style="font-size:13px;color:#888">Bayar di tempat · Area: ${E(codArea)}</p></div>`;}
+
+  
+  
+
+  return`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${E(seoTitle)}</title>
+<meta name="description" content="${E(seoDesc)}">
+<meta name="keywords" content="${E(seoKw)}">
+<meta property="og:title" content="${E(seoTitle)}"><meta property="og:description" content="${E(seoDesc)}"><meta property="og:image" content="${E(ogImg)}"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontMain)}:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+${gaId?`<script async src="https://www.googletagmanager.com/gtag/js?id=${E(gaId)}"><\/script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${E(gaId)}');<\/script>`:''}
+<style>
+:root{--pk:${primary};--dk:${dark};--lt:${light};--tx:${txColor};--br:${btnR};--cr:${cardR};}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:var(--tx);overflow-x:hidden}
+body{font-family:'${fontMain}',sans-serif;font-size:${bodySize};color:var(--tx);overflow-x:hidden}
 a{text-decoration:none;color:inherit}img{max-width:100%;display:block}
 /* BANNER */
-#top-banner{background:#D4537E;color:#ffffff;padding:9px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;font-weight:600}
+#top-banner{background:${bannerBg};color:${bannerColor};padding:9px 5%;display:${bannerAktif==='ya'?'flex':'none'};align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;font-weight:600}
 .t-wrap{display:flex;gap:5px;align-items:center}.t-box{background:rgba(255,255,255,.2);padding:3px 8px;border-radius:5px;font-size:15px;font-weight:800;min-width:32px;text-align:center}
 .t-lbl{font-size:9px;opacity:.8;text-align:center;margin-top:2px}.t-col{display:flex;flex-direction:column;align-items:center}
 /* NAV */
@@ -24,14 +1121,14 @@ nav{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #f
 nav ul{list-style:none;display:flex;gap:18px}nav ul a{font-size:13px;font-weight:500;color:#888;transition:color .2s}nav ul a:hover{color:var(--pk)}
 .n-r{display:flex;align-items:center;gap:7px}
 .n-wa{background:var(--pk);color:#fff;padding:7px 15px;border-radius:var(--br);font-size:13px;font-weight:600}
-.n-cart{position:relative;background:#fff;border:1px solid #f0e0e8;padding:7px 11px;border-radius:var(--br);cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px}
+.n-cart{position:relative;background:#fff;border:1px solid #f0e0e8;padding:7px 11px;border-radius:var(--br);cursor:pointer;font-size:13px;display:${cartAktif==='ya'?'flex':'none'};align-items:center;gap:5px}
 .n-cart:hover{background:var(--lt)}.cart-n{position:absolute;top:-6px;right:-6px;background:var(--pk);color:#fff;font-size:9px;font-weight:800;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.n-wl{background:#fff;border:1px solid #f0e0e8;padding:7px 11px;border-radius:var(--br);cursor:pointer;font-size:15px;display:flex}
+.n-wl{background:#fff;border:1px solid #f0e0e8;padding:7px 11px;border-radius:var(--br);cursor:pointer;font-size:15px;display:${wlAktif==='ya'?'flex':'none'}}
 .n-wl:hover{background:var(--lt)}
 /* HERO */
 .hero{padding:52px 5%;display:flex;align-items:center;justify-content:space-between;gap:40px;background:linear-gradient(135deg,var(--lt) 0%,#fff 60%)}
-.h-cont{flex:1;max-width:520px}.h-badge{display:inline-block;background:var(--lt);color:var(--pk);font-size:12px;font-weight:700;padding:5px 14px;border-radius:var(--br);margin-bottom:16px;border:1px solid #D4537E44}
-.h-cont h1{font-size:2.4rem;font-weight:800;line-height:1.15;margin-bottom:14px;letter-spacing:-.02em}
+.h-cont{flex:1;max-width:520px}.h-badge{display:inline-block;background:var(--lt);color:var(--pk);font-size:12px;font-weight:700;padding:5px 14px;border-radius:var(--br);margin-bottom:16px;border:1px solid ${primary}44}
+.h-cont h1{font-size:${h1Size};font-weight:800;line-height:1.15;margin-bottom:14px;letter-spacing:-.02em}
 .h-cont p{font-size:1rem;line-height:1.7;color:#666;margin-bottom:22px}
 .h-btns{display:flex;gap:10px;flex-wrap:wrap}
 .h-btns a{padding:11px 22px;border-radius:var(--br);font-size:14px;font-weight:700;transition:all .2s}
@@ -40,17 +1137,17 @@ nav ul{list-style:none;display:flex;gap:18px}nav ul a{font-size:13px;font-weight
 .h-imgs{display:flex;gap:12px;flex-shrink:0}
 .h-imgs img{width:138px;height:188px;object-fit:cover;border-radius:var(--cr)}.h-imgs img:nth-child(2){margin-top:-28px}
 /* MARQUEE */
-.mq-wrap{background:#D4537E;padding:9px 0;overflow:hidden}
-.mq-track{display:flex;gap:40px;animation:mq 25s linear infinite;white-space:nowrap}
-.mq-track span{color:#ffffff;font-size:13px;font-weight:500}
+.mq-wrap{background:${mqBg};padding:9px 0;overflow:hidden}
+.mq-track{display:flex;gap:40px;animation:mq ${mqSpeed}s linear infinite;white-space:nowrap}
+.mq-track span{color:${mqColor};font-size:13px;font-weight:500}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* SECTIONS */
 .sec{padding:52px 5%}.sec-alt{background:#fdf5f8}
 .sh{text-align:center;margin-bottom:32px}
 .sh small{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pk);margin-bottom:7px}
-.sh h2{font-size:1.8rem;font-weight:800;letter-spacing:-.02em}.sh p{font-size:13px;color:#888;margin-top:7px}
+.sh h2{font-size:${h2Size};font-weight:800;letter-spacing:-.02em}.sh p{font-size:13px;color:#888;margin-top:7px}
 /* FILTER BAR */
-.fb-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;padding:14px;background:#fff;border-radius:var(--cr);border:1px solid #f0e0e8}
+.fb-wrap{display:${filterAktif==='ya'?'flex':'none'};flex-wrap:wrap;gap:8px;margin-bottom:24px;padding:14px;background:#fff;border-radius:var(--cr);border:1px solid #f0e0e8}
 .fb-grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .fb-lbl{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.05em}
 .fb{padding:5px 12px;border:1px solid #e0d0d8;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;transition:all .15s}
@@ -105,9 +1202,9 @@ nav ul{list-style:none;display:flex;gap:18px}nav ul a{font-size:13px;font-weight
 .det-acts{display:flex;gap:9px;margin-bottom:18px;flex-wrap:wrap}
 .det-order{flex:1;padding:12px;background:var(--pk);color:#fff;border:none;border-radius:var(--br);font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;font-family:inherit}
 .det-order:hover{background:var(--dk)}
-.det-cart-btn{padding:12px 16px;border:2px solid var(--pk);color:var(--pk);background:#fff;border-radius:var(--br);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:block;font-family:inherit}
+.det-cart-btn{padding:12px 16px;border:2px solid var(--pk);color:var(--pk);background:#fff;border-radius:var(--br);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:${cartAktif==='ya'?'block':'none'};font-family:inherit}
 .det-cart-btn:hover{background:var(--lt)}
-.det-wl-btn{padding:12px 15px;border:2px solid #e0d0d8;background:#fff;border-radius:var(--br);font-size:16px;cursor:pointer;transition:all .2s;display:block}
+.det-wl-btn{padding:12px 15px;border:2px solid #e0d0d8;background:#fff;border-radius:var(--br);font-size:16px;cursor:pointer;transition:all .2s;display:${wlAktif==='ya'?'block':'none'}}
 .det-wl-btn:hover,.det-wl-btn.wl-saved{border-color:var(--pk);color:var(--pk)}
 .det-long{font-size:13px;color:#555;line-height:1.8;border-top:1px solid #f0e0e8;padding-top:15px;margin-top:4px}
 .det-related{padding:36px 5%;background:#fdf5f8}.det-related h3{font-size:1.1rem;font-weight:800;margin-bottom:18px}
@@ -245,22 +1342,22 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
 </style>
 </head>
 <body>
-
+${popupAktif==='ya'?`
 <div class="pop-ov" id="pop-ov">
   <div class="pop-box">
     <button class="pop-x" onclick="closePopup()">×</button>
-    <div class="pop-em">🎀</div>
-    <div class="pop-ttl">Selamat Datang di Glowthrf!</div>
-    <div class="pop-promo">GRATIS ONGKIR untuk pembelian pertama!</div>
-    <div class="pop-desc">Gunakan kode promo saat konfirmasi order via WhatsApp</div>
-    <div class="pop-kode" onclick="copyKode(this)" title="Klik untuk salin">GLOWTHRF10 📋</div>
-    <button class="pop-main" onclick="closePopup();location.href='#produk'">Belanja Sekarang</button>
-    <button class="pop-skip" onclick="closePopup()">Tidak, terima kasih</button>
+    <div class="pop-em">${E(popupEmoji)}</div>
+    <div class="pop-ttl">${E(popupTitle)}</div>
+    <div class="pop-promo">${E(popupPromo)}</div>
+    <div class="pop-desc">${E(popupDesc)}</div>
+    ${popupKode?`<div class="pop-kode" onclick="copyKode(this)" title="Klik untuk salin">${E(popupKode)} 📋</div>`:''}
+    <button class="pop-main" onclick="closePopup();location.href='${E(popupLink)}'">${E(popupBtn)}</button>
+    <button class="pop-skip" onclick="closePopup()">${E(popupClose)}</button>
   </div>
-</div>
+</div>`:''}
 
 <div id="top-banner">
-  <span>🔥 FLASH SALE — Diskon hingga 30% untuk semua produk!</span>
+  <span>${E(bannerText)}</span>
   <div class="t-wrap">
     <div class="t-col"><div class="t-box" id="t-h">00</div><div class="t-lbl">JAM</div></div>
     <span style="font-size:16px;font-weight:800;margin-bottom:10px">:</span>
@@ -271,346 +1368,74 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
 </div>
 
 <nav>
-  <a class="n-logo" href="#"><img src="https://glowthrf.com/logo.png" onerror="this.style.display='none'" alt="GLOWTHRF">GLOWTHRF</a>
-  <ul><li><a href="#produk">Produk</a></li><li><a href="#newarrivals">New Arrivals</a></li><li><a href="#bestseller">Best Seller</a></li><li><a href="#ulasan">Ulasan</a></li><li><a href="#kontak">Kontak</a></li></ul>
+  <a class="n-logo" href="#"><img src="${E(navLogo)}" onerror="this.style.display='none'" alt="${E(navBrand)}">${E(navBrand)}</a>
+  <ul>${navLinksHTML}</ul>
   <div class="n-r">
     <button class="n-wl" onclick="openWL()" title="Wishlist">♡</button>
     <button class="n-cart" onclick="openCart()">🛒 Keranjang <span class="cart-n" id="cart-n">0</span></button>
-    <a href="https://wa.me/087841697937" class="n-wa" target="_blank">💬 Chat WA</a>
+    <a href="https://wa.me/${E(wa)}" class="n-wa" target="_blank">${E(navWaText)}</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="h-cont">
-    <span class="h-badge">🎀 New Arrivals 2025</span>
-    <h1>Tampil <em style="color:#D4537E;font-style:normal">Cantik &amp;</em> Percaya Diri</h1>
-    <p>Fashion wanita pilihan — kaos graphic, set polkadot, korset, rok ruffles, hingga shorts kasual. Semua dengan harga terjangkau, kualitas terbaik.</p>
+    <span class="h-badge">${E(hbadge)}</span>
+    <h1>${headingFinal}</h1>
+    <p>${E(hdesc)}</p>
     <div class="h-btns">
-      <a href="#produk" class="h-p">Lihat Koleksi</a>
-      <a href="https://www.tokopedia.com/glowthrf" class="h-s" target="_blank">Tokopedia</a>
+      <a href="${E(hlink1)}" class="h-p">${E(hbtn1)}</a>
+      ${hbtn2?`<a href="${E(hlink2)}" class="h-s" target="_blank">${E(hbtn2)}</a>`:''}
     </div>
   </div>
   <div class="h-imgs">
-    <img src="https://glowthrf.com/img6.png" alt="Koleksi 1">
-    <img src="https://glowthrf.com/img2.jpg" alt="Koleksi 2">
-    <img src="https://glowthrf.com/img4.jpg" alt="Koleksi 3">
+    ${himg1?`<img src="${E(himg1)}" alt="Koleksi 1">`:''}
+    ${himg2?`<img src="${E(himg2)}" alt="Koleksi 2">`:''}
+    ${himg3?`<img src="${E(himg3)}" alt="Koleksi 3">`:''}
   </div>
 </section>
 
-<div class="mq-wrap"><div class="mq-track"><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span><span>🎀 Glowthrf Store · Fashion Wanita Terkini · Pengiriman dari Kosambi, Tangerang · COD &amp; Transfer Tersedia</span></div></div>
+<div class="mq-wrap"><div class="mq-track">${Array(6).fill(`<span>${E(mqText)}</span>`).join('')}</div></div>
 
-<section id="newarrivals" class="sec"><div class="sh"><small>Baru Hadir</small><h2>New Arrivals</h2><p>Koleksi terbaru yang baru saja hadir</p></div><div class="p-grid"><div class="p-card na-card" data-kat="Kaos" data-price="80000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Kaos Not Today Club','desc':'Oversized tee \\'Not Today Club\\'','descLong':'Oversized fit, cocok untuk semua ukuran tubuh.','price':80000,'priceOld':0,'badge':'New','img':'https://glowthrf.com/img3.jpg','img2':'','img3':'','kategori':'Kaos','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Kaos Not Today Club','toped':'','stok':'ada','na':'ya','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img3.jpg" alt="Kaos Not Today Club" loading="lazy">
-        <span class="p-badge">New</span><span class="p-tag-new">New ✨</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Kaos Not Today Club')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Kaos Not Today Club</div>
-        <div class="p-desc">Oversized tee &quot;Not Today Club&quot;</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 80.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Kaos Not Today Club',80000,'https://glowthrf.com/img3.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card na-card" data-kat="Set" data-price="145000" data-ukuran="S, M, L" onclick="openDetail({'name':'Set Polkadot Rhinestone','desc':'Set tank top + mini skirt polkadot hitam berhias rhinestone','descLong':'Set lengkap tank top dan rok mini. Bahan crepe premium.','price':145000,'priceOld':175000,'badge':'Favorit','img':'https://glowthrf.com/img4.jpg','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Set Polkadot Rhinestone','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img4.jpg" alt="Set Polkadot Rhinestone" loading="lazy">
-        <span class="p-badge">Favorit</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Polkadot Rhinestone')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Polkadot Rhinestone</div>
-        <div class="p-desc">Set tank top + mini skirt polkadot hitam berhias rhinestone</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span></div>
-        <div class="p-price-row">
-          <span class="p-old">Rp 175.000</span>
-          <span class="p-price">Rp 145.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Polkadot Rhinestone',145000,'https://glowthrf.com/img4.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card na-card" data-kat="Set" data-price="135000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Set Ruffle Skirt — Look 01','desc':'Rok ruffles layer hitam dipadukan kaos Maryland','descLong':'Rok ruffle layer dengan detail rapi. Termasuk kaos dalam set.','price':135000,'priceOld':0,'badge':'New','img':'https://glowthrf.com/img6.png','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Ruffle Skirt Look 01','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img6.png" alt="Set Ruffle Skirt — Look 01" loading="lazy">
-        <span class="p-badge">New</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Ruffle Skirt — Look 01')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Ruffle Skirt — Look 01</div>
-        <div class="p-desc">Rok ruffles layer hitam dipadukan kaos Maryland</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 135.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Ruffle Skirt — Look 01',135000,'https://glowthrf.com/img6.png')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card na-card" data-kat="Celana" data-price="105000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Shorts Linen Drawstring','desc':'Shorts linen bertali tersedia Navy & Putih','descLong':'Bahan linen premium ringan dan adem. 2 pilihan warna.','price':105000,'priceOld':0,'badge':'2 Warna','img':'https://glowthrf.com/img10.jpg','img2':'','img3':'','kategori':'Celana','ukuran':'S, M, L, XL','warna':'Navy:#1B3A6B, Putih:#F5F5F5','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Shorts Linen Drawstring','toped':'','stok':'ada','na':'ya','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img10.jpg" alt="Shorts Linen Drawstring" loading="lazy">
-        <span class="p-badge">2 Warna</span><span class="p-tag-new">New ✨</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Shorts Linen Drawstring')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Shorts Linen Drawstring</div>
-        <div class="p-desc">Shorts linen bertali tersedia Navy &amp; Putih</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 105.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Shorts Linen Drawstring',105000,'https://glowthrf.com/img10.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div></div></section>
-<section id="bestseller" class="sec sec-alt"><div class="sh"><small>Paling Laris</small><h2>Best Seller</h2><p>Produk terlaris pilihan pelanggan setia Glowthrf</p></div><div class="p-grid"><div class="p-card bs-card" data-kat="Kaos" data-price="80000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Kaos Morning Feast','desc':'Baby tee graphic \\'A Morning Feast for the Soul\\'','descLong':'Bahan cotton combed 30s, adem dan nyaman dipakai seharian.','price':80000,'priceOld':0,'badge':'Bestseller','img':'https://glowthrf.com/img2.jpg','img2':'','img3':'','kategori':'Kaos','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Kaos Morning Feast','toped':'','stok':'ada','na':'tidak','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img2.jpg" alt="Kaos Morning Feast" loading="lazy">
-        <span class="p-badge">Bestseller</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Kaos Morning Feast')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Kaos Morning Feast</div>
-        <div class="p-desc">Baby tee graphic &quot;A Morning Feast for the Soul&quot;</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 80.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Kaos Morning Feast',80000,'https://glowthrf.com/img2.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card bs-card" data-kat="Set" data-price="145000" data-ukuran="S, M, L" onclick="openDetail({'name':'Set Polkadot Rhinestone','desc':'Set tank top + mini skirt polkadot hitam berhias rhinestone','descLong':'Set lengkap tank top dan rok mini. Bahan crepe premium.','price':145000,'priceOld':175000,'badge':'Favorit','img':'https://glowthrf.com/img4.jpg','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Set Polkadot Rhinestone','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img4.jpg" alt="Set Polkadot Rhinestone" loading="lazy">
-        <span class="p-badge">Favorit</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Polkadot Rhinestone')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Polkadot Rhinestone</div>
-        <div class="p-desc">Set tank top + mini skirt polkadot hitam berhias rhinestone</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span></div>
-        <div class="p-price-row">
-          <span class="p-old">Rp 175.000</span>
-          <span class="p-price">Rp 145.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Polkadot Rhinestone',145000,'https://glowthrf.com/img4.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card bs-card" data-kat="Set" data-price="135000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Set Ruffle Skirt — Look 01','desc':'Rok ruffles layer hitam dipadukan kaos Maryland','descLong':'Rok ruffle layer dengan detail rapi. Termasuk kaos dalam set.','price':135000,'priceOld':0,'badge':'New','img':'https://glowthrf.com/img6.png','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Ruffle Skirt Look 01','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img6.png" alt="Set Ruffle Skirt — Look 01" loading="lazy">
-        <span class="p-badge">New</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Ruffle Skirt — Look 01')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Ruffle Skirt — Look 01</div>
-        <div class="p-desc">Rok ruffles layer hitam dipadukan kaos Maryland</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 135.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Ruffle Skirt — Look 01',135000,'https://glowthrf.com/img6.png')">Tambah ke Keranjang</button>
-      </div>
-    </div></div></section>
+${naAktif==='ya'&&naProds?`<section id="newarrivals" class="sec"><div class="sh"><small>Baru Hadir</small><h2>${E(naTitle)}</h2><p>${E(naSub)}</p></div><div class="p-grid">${naProds}</div></section>`:''}
+${bsAktif==='ya'&&bsProds?`<section id="bestseller" class="sec sec-alt"><div class="sh"><small>Paling Laris</small><h2>${E(bsTitle)}</h2><p>${E(bsSub)}</p></div><div class="p-grid">${bsProds}</div></section>`:''}
 
-<section id="produk" class="sec sec-alt">
+<section id="produk" class="sec${naAktif==='ya'||bsAktif==='ya'?' sec-alt':''}">
   <div class="sh"><small>Koleksi Kami</small><h2>Semua <em style="color:var(--pk);font-style:normal">Koleksi</em></h2></div>
   <div class="fb-wrap">
-    <div class="fb-grp"><span class="fb-lbl">Kategori:</span><button class="fb fa" data-kat="Semua" onclick="doFilter(this,'kat')">Semua</button><button class="fb" data-kat="Kaos" onclick="doFilter(this,'kat')">Kaos</button><button class="fb" data-kat="Set" onclick="doFilter(this,'kat')">Set</button><button class="fb" data-kat="Korset" onclick="doFilter(this,'kat')">Korset</button><button class="fb" data-kat="Celana" onclick="doFilter(this,'kat')">Celana</button></div>
-    <div class="fb-grp"><span class="fb-lbl">Ukuran:</span><button class="fb" data-uk="S" onclick="doFilter(this,'uk')">S</button><button class="fb" data-uk="M" onclick="doFilter(this,'uk')">M</button><button class="fb" data-uk="L" onclick="doFilter(this,'uk')">L</button><button class="fb" data-uk="XL" onclick="doFilter(this,'uk')">XL</button></div>
+    <div class="fb-grp"><span class="fb-lbl">Kategori:</span>${katBtns}</div>
+    <div class="fb-grp"><span class="fb-lbl">Ukuran:</span>${ukBtns}</div>
     <div class="fb-grp"><span class="fb-lbl">Harga:</span>
-      <div class="fb-price">Rp<input type="number" id="fp-min" value="0" onchange="applyFilters()">—<input type="number" id="fp-max" value="500000" onchange="applyFilters()"></div>
+      <div class="fb-price">Rp<input type="number" id="fp-min" value="${filterMin}" onchange="applyFilters()">—<input type="number" id="fp-max" value="${filterMax}" onchange="applyFilters()"></div>
     </div>
     <button class="fb" onclick="resetFilters()" style="margin-left:auto">↺ Reset</button>
   </div>
-  <div class="p-grid" id="p-grid"><div class="p-card" data-kat="Kaos" data-price="80000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Kaos Morning Feast','desc':'Baby tee graphic \\'A Morning Feast for the Soul\\'','descLong':'Bahan cotton combed 30s, adem dan nyaman dipakai seharian.','price':80000,'priceOld':0,'badge':'Bestseller','img':'https://glowthrf.com/img2.jpg','img2':'','img3':'','kategori':'Kaos','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Kaos Morning Feast','toped':'','stok':'ada','na':'tidak','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img2.jpg" alt="Kaos Morning Feast" loading="lazy">
-        <span class="p-badge">Bestseller</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Kaos Morning Feast')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Kaos Morning Feast</div>
-        <div class="p-desc">Baby tee graphic &quot;A Morning Feast for the Soul&quot;</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 80.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Kaos Morning Feast',80000,'https://glowthrf.com/img2.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Kaos" data-price="80000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Kaos Not Today Club','desc':'Oversized tee \\'Not Today Club\\'','descLong':'Oversized fit, cocok untuk semua ukuran tubuh.','price':80000,'priceOld':0,'badge':'New','img':'https://glowthrf.com/img3.jpg','img2':'','img3':'','kategori':'Kaos','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Kaos Not Today Club','toped':'','stok':'ada','na':'ya','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img3.jpg" alt="Kaos Not Today Club" loading="lazy">
-        <span class="p-badge">New</span><span class="p-tag-new">New ✨</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Kaos Not Today Club')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Kaos Not Today Club</div>
-        <div class="p-desc">Oversized tee &quot;Not Today Club&quot;</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 80.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Kaos Not Today Club',80000,'https://glowthrf.com/img3.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Kaos" data-price="80000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Kaos Tokyo 14','desc':'Baby tee sporty \\'Tokyo 14\\'','descLong':'Desain minimalis sporty. Bahan cotton combed 24s.','price':80000,'priceOld':0,'badge':'','img':'https://glowthrf.com/img1.jpg','img2':'','img3':'','kategori':'Kaos','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Kaos Tokyo 14','toped':'','stok':'ada','na':'tidak','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img1.jpg" alt="Kaos Tokyo 14" loading="lazy">
-        
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Kaos Tokyo 14')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Kaos Tokyo 14</div>
-        <div class="p-desc">Baby tee sporty &quot;Tokyo 14&quot;</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 80.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Kaos Tokyo 14',80000,'https://glowthrf.com/img1.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Set" data-price="145000" data-ukuran="S, M, L" onclick="openDetail({'name':'Set Polkadot Rhinestone','desc':'Set tank top + mini skirt polkadot hitam berhias rhinestone','descLong':'Set lengkap tank top dan rok mini. Bahan crepe premium.','price':145000,'priceOld':175000,'badge':'Favorit','img':'https://glowthrf.com/img4.jpg','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Set Polkadot Rhinestone','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img4.jpg" alt="Set Polkadot Rhinestone" loading="lazy">
-        <span class="p-badge">Favorit</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Polkadot Rhinestone')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Polkadot Rhinestone</div>
-        <div class="p-desc">Set tank top + mini skirt polkadot hitam berhias rhinestone</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span></div>
-        <div class="p-price-row">
-          <span class="p-old">Rp 175.000</span>
-          <span class="p-price">Rp 145.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Polkadot Rhinestone',145000,'https://glowthrf.com/img4.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Korset" data-price="125000" data-ukuran="S, M, L" onclick="openDetail({'name':'Korset Polkadot Cream','desc':'Bustier korset polkadot krem tali serut depan','descLong':'Bahan tweed premium dengan tali serut adjustable.','price':125000,'priceOld':0,'badge':'','img':'https://glowthrf.com/img5.jpg','img2':'','img3':'','kategori':'Korset','ukuran':'S, M, L','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Korset Polkadot Cream','toped':'','stok':'ada','na':'tidak','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img5.jpg" alt="Korset Polkadot Cream" loading="lazy">
-        
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Korset Polkadot Cream')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Korset Polkadot Cream</div>
-        <div class="p-desc">Bustier korset polkadot krem tali serut depan</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 125.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Korset Polkadot Cream',125000,'https://glowthrf.com/img5.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Set" data-price="135000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Set Ruffle Skirt — Look 01','desc':'Rok ruffles layer hitam dipadukan kaos Maryland','descLong':'Rok ruffle layer dengan detail rapi. Termasuk kaos dalam set.','price':135000,'priceOld':0,'badge':'New','img':'https://glowthrf.com/img6.png','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Ruffle Skirt Look 01','toped':'','stok':'ada','na':'ya','bs':'ya'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img6.png" alt="Set Ruffle Skirt — Look 01" loading="lazy">
-        <span class="p-badge">New</span><span class="p-tag-new">New ✨</span><span class="p-tag-hot">🔥 Terlaris</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Ruffle Skirt — Look 01')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Ruffle Skirt — Look 01</div>
-        <div class="p-desc">Rok ruffles layer hitam dipadukan kaos Maryland</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 135.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Ruffle Skirt — Look 01',135000,'https://glowthrf.com/img6.png')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Set" data-price="135000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Set Ruffle Skirt — Look 02','desc':'Rok ruffles layer + crop tee cokelat','descLong':'Kombinasi rok ruffle dengan crop tee warna earth tone.','price':135000,'priceOld':0,'badge':'','img':'https://glowthrf.com/img7.png','img2':'','img3':'','kategori':'Set','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Ruffle Skirt Look 02','toped':'','stok':'ada','na':'tidak','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img7.png" alt="Set Ruffle Skirt — Look 02" loading="lazy">
-        
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Set Ruffle Skirt — Look 02')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Set Ruffle Skirt — Look 02</div>
-        <div class="p-desc">Rok ruffles layer + crop tee cokelat</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 135.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Set Ruffle Skirt — Look 02',135000,'https://glowthrf.com/img7.png')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Celana" data-price="95000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Shorts Hitam Kasual','desc':'Celana pendek hitam elastik pinggang tinggi','descLong':'Bahan twill stretch nyaman. Pinggang tinggi dengan karet elastis.','price':95000,'priceOld':0,'badge':'','img':'https://glowthrf.com/img9.jpg','img2':'','img3':'','kategori':'Celana','ukuran':'S, M, L, XL','warna':'','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Shorts Hitam Kasual','toped':'','stok':'ada','na':'tidak','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img9.jpg" alt="Shorts Hitam Kasual" loading="lazy">
-        
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Shorts Hitam Kasual')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Shorts Hitam Kasual</div>
-        <div class="p-desc">Celana pendek hitam elastik pinggang tinggi</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 95.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Shorts Hitam Kasual',95000,'https://glowthrf.com/img9.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div><div class="p-card" data-kat="Celana" data-price="105000" data-ukuran="S, M, L, XL" onclick="openDetail({'name':'Shorts Linen Drawstring','desc':'Shorts linen bertali tersedia Navy & Putih','descLong':'Bahan linen premium ringan dan adem. 2 pilihan warna.','price':105000,'priceOld':0,'badge':'2 Warna','img':'https://glowthrf.com/img10.jpg','img2':'','img3':'','kategori':'Celana','ukuran':'S, M, L, XL','warna':'Navy:#1B3A6B, Putih:#F5F5F5','ukuranNote':'','wa':'Halo Glowthrf! Saya mau order Shorts Linen Drawstring','toped':'','stok':'ada','na':'ya','bs':'tidak'})">
-      <div class="p-img-wrap">
-        <img src="https://glowthrf.com/img10.jpg" alt="Shorts Linen Drawstring" loading="lazy">
-        <span class="p-badge">2 Warna</span><span class="p-tag-new">New ✨</span>
-        
-        <button class="p-wl" onclick="event.stopPropagation();toggleWL(this,'Shorts Linen Drawstring')">♡</button>
-      </div>
-      <div class="p-info">
-        <div class="p-name">Shorts Linen Drawstring</div>
-        <div class="p-desc">Shorts linen bertali tersedia Navy &amp; Putih</div>
-        <div class="p-sizes"><span>S</span><span>M</span><span>L</span><span>XL</span></div>
-        <div class="p-price-row">
-          
-          <span class="p-price">Rp 105.000</span>
-        </div>
-        <button class="p-cart" onclick="event.stopPropagation();addToCart('Shorts Linen Drawstring',105000,'https://glowthrf.com/img10.jpg')">Tambah ke Keranjang</button>
-      </div>
-    </div></div>
+  <div class="p-grid" id="p-grid">${allProds}</div>
 </section>
 
-<section id="ulasan" class="sec"><div class="sh"><small>Kata Mereka</small><h2>Ulasan <em style="color:var(--pk);font-style:normal">Pelanggan</em></h2></div><div class="rv-grid"><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Kaos morning feast-nya bagus banget! Bahannya adem, jahitannya rapi. Pasti beli lagi!"</p><div class="rv-author"><div class="rv-av">A</div><div><strong>Aurel R.</strong><br><small>Jakarta Selatan · Verified Buyer</small></div></div></div><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Set polkadot rhinestone-nya kece parah! Dipake ke kondangan banyak yang nanya beli dimana."</p><div class="rv-author"><div class="rv-av">S</div><div><strong>Salsabila N.</strong><br><small>Tangerang · Verified Buyer</small></div></div></div><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Rok ruffle-nya lucuuu! Foto sama reality sama. Seller ramah dan responsif. Pasti balik lagi!"</p><div class="rv-author"><div class="rv-av">N</div><div><strong>Nadya K.</strong><br><small>Bekasi · Verified Buyer</small></div></div></div><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Shorts linen-nya adem banget. Beli 2 warna sekaligus. Harga terjangkau kualitas premium!"</p><div class="rv-author"><div class="rv-av">D</div><div><strong>Dinda M.</strong><br><small>Depok · Verified Buyer</small></div></div></div><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Korset polkadot cream-nya cantik. Bahannya berkualitas. Recommended!"</p><div class="rv-author"><div class="rv-av">R</div><div><strong>Rara F.</strong><br><small>Bogor · Verified Buyer</small></div></div></div><div class="rv-card"><div class="rv-stars">★★★★★</div><p>"Udah langganan dari awal buka. Semua produknya konsisten bagus. Sukses terus Glowthrf!"</p><div class="rv-author"><div class="rv-av">V</div><div><strong>Vanya P.</strong><br><small>BSD City · Loyal Customer</small></div></div></div></div></section>
-<section id="info" class="sec sec-alt"><div class="info-grid"><div class="info-item"><span>📦</span><h4>Pengiriman Cepat</h4><p>Same-day &amp; next-day dari Kosambi, Tangerang.</p></div><div class="info-item"><span>✅</span><h4>Kualitas Terjamin</h4><p>Setiap produk dicek sebelum dikirim.</p></div><div class="info-item"><span>💬</span><h4>Respon Cepat</h4><p>WhatsApp selalu aktif siap membantu.</p></div><div class="info-item"><span>🔄</span><h4>Mudah Retur</h4><p>Produk cacat? Kami siap bantu retur.</p></div></div></section>
-<section id="pembayaran" class="sec"><div class="sh"><small>Cara Bayar</small><h2>Metode <em style="color:var(--pk);font-style:normal">Pembayaran</em></h2></div><div class="pay-box"><div class="pay-grp"><h4>COD</h4><p style="font-size:13px;color:#888">Bayar di tempat · Area: Kosambi, Tangerang dan sekitarnya</p></div></div></section>
+<section id="ulasan" class="sec"><div class="sh"><small>Kata Mereka</small><h2>Ulasan <em style="color:var(--pk);font-style:normal">Pelanggan</em></h2></div><div class="rv-grid">${reviewsHTML}</div></section>
+<section id="info" class="sec sec-alt"><div class="info-grid">${infoHTML}</div></section>
+${payHTML?`<section id="pembayaran" class="sec"><div class="sh"><small>Cara Bayar</small><h2>Metode <em style="color:var(--pk);font-style:normal">Pembayaran</em></h2></div><div class="pay-box">${payHTML}</div></section>`:''}
 
 <footer id="kontak">
   <div class="ft-brand">
-    <img src="https://glowthrf.com/logo.png" alt="GLOWTHRF" style="height:24px;filter:brightness(0) invert(1);margin-bottom:7px">
-    <div style="font-weight:800;font-size:14px">🎀 Glowthrf</div>
-    <p>Fashion wanita pilihan dengan harga terjangkau dan kualitas terbaik. Dikirim langsung dari Kosambi, Tangerang.</p>
+    <img src="${E(navLogo)}" alt="${E(navBrand)}" style="height:24px;filter:brightness(0) invert(1);margin-bottom:7px">
+    <div style="font-weight:800;font-size:14px">${E(fname)}</div>
+    <p>${E(fdesc)}</p>
   </div>
   <div><h5>Belanja</h5><ul>
-    <li><a href="https://www.tokopedia.com/glowthrf" target="_blank">Tokopedia</a></li>
-    
-    <li><a href="https://wa.me/087841697937" target="_blank">WhatsApp Order</a></li>
-    <li><a href="https://instagram.com/glowthrf" target="_blank">Instagram</a></li>
+    ${toped?`<li><a href="${E(toped)}" target="_blank">Tokopedia</a></li>`:''}
+    ${shopee?`<li><a href="${E(shopee)}" target="_blank">Shopee</a></li>`:''}
+    <li><a href="https://wa.me/${E(wa)}" target="_blank">WhatsApp Order</a></li>
+    <li><a href="https://instagram.com/${E(ig)}" target="_blank">Instagram</a></li>
   </ul></div>
   <div><h5>Info</h5><ul>
     <li><a href="#pembayaran">Cara Pembayaran</a></li>
     <li><a href="#ulasan">Ulasan</a></li>
-    <li><a href="https://wa.me/087841697937" target="_blank">Hubungi Kami</a></li>
-  </ul><div style="margin-top:12px;font-size:11px;color:#777">📍 Kosambi, Tangerang, Banten</div></div>
+    <li><a href="https://wa.me/${E(wa)}" target="_blank">Hubungi Kami</a></li>
+  </ul><div style="margin-top:12px;font-size:11px;color:#777">📍 ${E(city)}</div></div>
 </footer>
-<div class="ft-bot">© 2025 Glowthrf Store. Kosambi, Tangerang, Banten.</div>
-<a href="https://wa.me/087841697937" class="fab" target="_blank">💬</a>
+<div class="ft-bot">${E(fcopy)}</div>
+<a href="https://wa.me/${E(wa)}" class="fab" target="_blank">💬</a>
 
 <!-- CHECKOUT PAGE -->
 <div id="co-page" style="display:none;position:fixed;inset:0;background:#f5f0f3;z-index:500;overflow-y:auto">
@@ -618,21 +1443,21 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
   <div class="co-topbar"><button class="co-back-btn" onclick="closeCheckout()">← Kembali Belanja</button><span style="font-size:12px;color:var(--pk)">🛍 <span id="co-bag-count">0</span> item</span></div>
   <div class="co-steps"><div class="co-step act" id="cstep-1">1 Keranjang</div><span style="color:#ccc;align-self:center">›</span><div class="co-step" id="cstep-2">2 Pengiriman</div><span style="color:#ccc;align-self:center">›</span><div class="co-step" id="cstep-3">3 Pembayaran</div></div>
   <div id="co-s1">
-    <div class="co-card"><div class="spend-bar"><div class="spend-msg" id="spend-msg">Belanja lebih untuk dapat diskon!</div><div class="spend-track"><div class="spend-fill" id="spend-fill" style="width:0%"></div></div><div class="spend-tiers"><span>Rp 0</span><span>Rp 300K (10%)</span><span>Rp 500K (15%)</span><span>Rp 700K (20%)</span></div></div><div class="co-card-title">Isi Keranjang</div><div id="co-items"></div></div>
+    <div class="co-card"><div class="spend-bar"><div class="spend-msg" id="spend-msg">Belanja lebih untuk dapat diskon!</div><div class="spend-track"><div class="spend-fill" id="spend-fill" style="width:0%"></div></div><div class="spend-tiers"><span>Rp 0</span>${spendLabels}</div></div><div class="co-card-title">Isi Keranjang</div><div id="co-items"></div></div>
     <div class="co-card"><div class="co-sum-row"><span>Subtotal</span><span id="co-sub">Rp 0</span></div><div class="co-sum-row" id="co-disc-row" style="display:none"><span id="co-disc-lbl" style="color:#2E7D52">Diskon</span><span id="co-disc-val" style="color:#2E7D52">-Rp 0</span></div><div class="co-sum-row"><span style="font-weight:800">Total</span><span id="co-total" style="color:var(--pk)">Rp 0</span></div><div class="co-save-box" id="co-save-box" style="display:none">Hemat <strong id="co-save-amt">Rp 0</strong>!</div></div>
     <button class="co-btn" onclick="goStep(2)">Lanjut ke Pengiriman →</button>
   </div>
   <div id="co-s2" style="display:none">
     <div class="co-card"><div class="co-card-title">Alamat Pengiriman</div><div class="co-grid2"><div class="co-field"><label class="co-lbl">Nama Depan *</label><input class="co-inp" id="sh-fn" placeholder="Nama depan"></div><div class="co-field"><label class="co-lbl">Nama Belakang *</label><input class="co-inp" id="sh-ln" placeholder="Nama belakang"></div></div><div class="co-field"><label class="co-lbl">Nomor HP *</label><input class="co-inp" id="sh-phone" placeholder="08xxxxxxxxxx" type="tel"></div><div class="co-field"><label class="co-lbl">Alamat Lengkap *</label><input class="co-inp" id="sh-addr" placeholder="Jalan, nomor rumah, RT/RW"></div><div class="co-grid2"><div class="co-field"><label class="co-lbl">Kota *</label><input class="co-inp" id="sh-city" placeholder="Kota"></div><div class="co-field"><label class="co-lbl">Provinsi</label><input class="co-inp" id="sh-prov" placeholder="Provinsi"></div></div><div class="co-field"><label class="co-lbl">Catatan kurir</label><input class="co-inp" id="sh-note" placeholder="Opsional"></div></div>
-    <div class="co-card"><div class="co-card-title">Metode Pengiriman</div><div class="ship-opt sel" id="ship-reg" onclick="selShip('reg',this)"><div><div style="font-size:13px;font-weight:700">Reguler</div><div style="font-size:11px;color:#888;margin-top:2px">3-7 hari kerja - JNE / J&T / SiCepat</div></div><div style="font-size:13px;font-weight:700;color:#2E7D52">GRATIS</div></div><div class="ship-opt" id="ship-exp" onclick="selShip('exp',this)"><div><div style="font-size:13px;font-weight:700">Express</div><div style="font-size:11px;color:#888;margin-top:2px">1-2 hari kerja</div></div><div style="font-size:13px;font-weight:700;color:#2E7D52">Rp 25.000</div></div><div class="ship-opt" id="ship-sam" onclick="selShip('sam',this)"><div><div style="font-size:13px;font-weight:700">Same Day</div><div style="font-size:11px;color:#888;margin-top:2px">Jabodetabek - hari ini sebelum 12.00</div></div><div style="font-size:13px;font-weight:700;color:#2E7D52">Rp 45.000</div></div></div>
+    <div class="co-card"><div class="co-card-title">Metode Pengiriman</div>${shipOptsHTML}</div>
     <button class="co-btn" onclick="goStep2()">Lanjut ke Pembayaran →</button>
     <button class="co-btn-sec" onclick="goStep(1)">← Kembali</button>
   </div>
   <div id="co-s3" style="display:none">
     <div class="co-card"><div class="co-card-title">Ringkasan Pesanan</div><div id="co-final-items"></div><div style="border-top:1px solid #f0e0e8;padding-top:9px;margin-top:9px"><div class="co-sum-row"><span>Subtotal</span><span id="co-sub2">Rp 0</span></div><div class="co-sum-row" id="co-disc-row2" style="display:none"><span id="co-disc-lbl2" style="color:#2E7D52">Diskon</span><span id="co-disc-val2" style="color:#2E7D52">-Rp 0</span></div><div class="co-sum-row"><span>Ongkos Kirim</span><span id="co-ship-val2">GRATIS</span></div><div class="co-sum-row"><span style="font-weight:800">Total Pembayaran</span><span id="co-total2" style="color:var(--pk);font-size:15px">Rp 0</span></div></div></div>
-    <div class="co-card"><div class="co-card-title">Metode Pembayaran</div><div class="pay-opt sel" id="pay-bca" onclick="selPay('bca',this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:#003087;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">BCA</span><span style="font-size:13px;font-weight:700">Transfer BCA</span></div><div style="font-size:11px;color:#888;margin-top:3px">Tabungan - ATM - m-BCA - KlikBCA</div></div><div class="pay-opt" id="pay-mandiri" onclick="selPay('mandiri',this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:#003F8A;color:#FFD700;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">Mandiri</span><span style="font-size:13px;font-weight:700">Transfer Mandiri</span></div><div style="font-size:11px;color:#888;margin-top:3px">Tabungan - ATM - Livin by Mandiri</div></div><div class="pay-opt" id="pay-bni" onclick="selPay('bni',this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:#F77F00;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">BNI</span><span style="font-size:13px;font-weight:700">Transfer BNI</span></div><div style="font-size:11px;color:#888;margin-top:3px">Tabungan - ATM - BNI Mobile Banking</div></div><div class="pay-opt" id="pay-seabank" onclick="selPay('seabank',this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:#2B3595;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">SeaBank</span><span style="font-size:13px;font-weight:700">Transfer SeaBank</span></div><div style="font-size:11px;color:#888;margin-top:3px">Aplikasi SeaBank - Transfer antar bank</div></div><div class="pay-opt" id="pay-ovo" onclick="selPay('ovo',this)"><div style="display:flex;align-items:center;gap:8px"><span style="background:#4C3494;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px">OVO</span><span style="font-size:13px;font-weight:700">Transfer OVO</span></div><div style="font-size:11px;color:#888;margin-top:3px">Transfer saldo OVO ke nomor HP terdaftar</div></div></div>
-    <div class="co-card" style="font-size:11px;color:#888;text-align:center;line-height:1.7">Item flash sale tidak dapat diretur/ditukar.</div>
-    <button class="co-btn" onclick="confirmOrder()">Konfirmasi dan Pesan</button>
+    <div class="co-card"><div class="co-card-title">Metode Pembayaran</div>${payOptsHTML}</div>
+    <div class="co-card" style="font-size:11px;color:#888;text-align:center;line-height:1.7">${E(cc.catatan)}</div>
+    <button class="co-btn" onclick="confirmOrder()">${E(cc.confirmText)}</button>
     <button class="co-btn-sec" onclick="goStep(2)">← Kembali</button>
   </div>
   <div id="co-s4" style="display:none">
@@ -650,7 +1475,7 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
 <!-- DETAIL PAGE -->
 <div class="det-page" id="det-page">
   <div class="det-inner">
-    <button class="det-back" onclick="closeDet()">← Kembali ke Koleksi</button>
+    <button class="det-back" onclick="closeDet()">${E(detBackText)}</button>
     <div class="det-grid">
       <div>
         <img class="det-main-img" id="det-img" src="" alt="">
@@ -664,7 +1489,7 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
         <div id="det-wr-wrap"><div class="det-sec-lbl">Pilih Warna</div><div class="det-warnas" id="det-warnas"></div></div>
         <div class="det-stok" id="det-stok"></div>
         <div class="det-acts">
-          <button class="det-order" onclick="orderDet()">Order via WhatsApp</button>
+          <button class="det-order" onclick="orderDet()">${E(detOrderText)}</button>
           <button class="det-cart-btn" onclick="cartDet()">+ Keranjang</button>
           <button class="det-wl-btn" id="det-wl-btn" onclick="wlDet()">♡</button>
         </div>
@@ -682,7 +1507,7 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
   <div class="cart-body" id="cart-body"></div>
   <div class="cart-ft" id="cart-ft" style="display:none">
     <div class="cart-tot"><span>Total</span><span id="cart-tot">Rp 0</span></div>
-    <button class="cart-co" onclick="checkoutCart()">📲 Checkout via WhatsApp</button>
+    <button class="cart-co" onclick="checkoutCart()">${E(cartCheckoutText)}</button>
   </div>
 </div>
 
@@ -691,21 +1516,21 @@ footer ul{list-style:none}footer ul li{margin-bottom:6px}footer ul a{font-size:1
   <div class="wl-inner">
     <div class="wl-hd"><h2>❤ Wishlist Kamu</h2><button class="det-back" style="color:#888" onclick="closeWL()">× Tutup</button></div>
     <div class="p-grid" id="wl-grid"></div>
-    <div id="wl-empty" style="display:none;text-align:center;padding:60px;color:#aaa;font-size:13px">Belum ada produk di wishlist kamu.</div>
+    <div id="wl-empty" style="display:none;text-align:center;padding:60px;color:#aaa;font-size:13px">${E(wlEmptyText)}</div>
   </div>
 </div>
 
 <script>
-var WA='087841697937';
-var cartTpl="Halo Glowthrf! Saya mau order:\n\n{ITEMS}\n\nTotal: Rp {TOTAL}\nMohon konfirmasi ketersediaan dan info pengiriman. Terima kasih!";
-var allProds=[{"name":"Kaos Morning Feast","desc":"Baby tee graphic \"A Morning Feast for the Soul\"","descLong":"Bahan cotton combed 30s, adem dan nyaman dipakai seharian.","price":80000,"priceOld":0,"badge":"Bestseller","img":"https://glowthrf.com/img2.jpg","img2":"","img3":"","kategori":"Kaos","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Kaos Morning Feast","toped":"","stok":"ada","na":"tidak","bs":"ya"},{"name":"Kaos Not Today Club","desc":"Oversized tee \"Not Today Club\"","descLong":"Oversized fit, cocok untuk semua ukuran tubuh.","price":80000,"priceOld":0,"badge":"New","img":"https://glowthrf.com/img3.jpg","img2":"","img3":"","kategori":"Kaos","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Kaos Not Today Club","toped":"","stok":"ada","na":"ya","bs":"tidak"},{"name":"Kaos Tokyo 14","desc":"Baby tee sporty \"Tokyo 14\"","descLong":"Desain minimalis sporty. Bahan cotton combed 24s.","price":80000,"priceOld":0,"badge":"","img":"https://glowthrf.com/img1.jpg","img2":"","img3":"","kategori":"Kaos","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Kaos Tokyo 14","toped":"","stok":"ada","na":"tidak","bs":"tidak"},{"name":"Set Polkadot Rhinestone","desc":"Set tank top + mini skirt polkadot hitam berhias rhinestone","descLong":"Set lengkap tank top dan rok mini. Bahan crepe premium.","price":145000,"priceOld":175000,"badge":"Favorit","img":"https://glowthrf.com/img4.jpg","img2":"","img3":"","kategori":"Set","ukuran":"S, M, L","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Set Polkadot Rhinestone","toped":"","stok":"ada","na":"ya","bs":"ya"},{"name":"Korset Polkadot Cream","desc":"Bustier korset polkadot krem tali serut depan","descLong":"Bahan tweed premium dengan tali serut adjustable.","price":125000,"priceOld":0,"badge":"","img":"https://glowthrf.com/img5.jpg","img2":"","img3":"","kategori":"Korset","ukuran":"S, M, L","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Korset Polkadot Cream","toped":"","stok":"ada","na":"tidak","bs":"tidak"},{"name":"Set Ruffle Skirt — Look 01","desc":"Rok ruffles layer hitam dipadukan kaos Maryland","descLong":"Rok ruffle layer dengan detail rapi. Termasuk kaos dalam set.","price":135000,"priceOld":0,"badge":"New","img":"https://glowthrf.com/img6.png","img2":"","img3":"","kategori":"Set","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Ruffle Skirt Look 01","toped":"","stok":"ada","na":"ya","bs":"ya"},{"name":"Set Ruffle Skirt — Look 02","desc":"Rok ruffles layer + crop tee cokelat","descLong":"Kombinasi rok ruffle dengan crop tee warna earth tone.","price":135000,"priceOld":0,"badge":"","img":"https://glowthrf.com/img7.png","img2":"","img3":"","kategori":"Set","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Ruffle Skirt Look 02","toped":"","stok":"ada","na":"tidak","bs":"tidak"},{"name":"Shorts Hitam Kasual","desc":"Celana pendek hitam elastik pinggang tinggi","descLong":"Bahan twill stretch nyaman. Pinggang tinggi dengan karet elastis.","price":95000,"priceOld":0,"badge":"","img":"https://glowthrf.com/img9.jpg","img2":"","img3":"","kategori":"Celana","ukuran":"S, M, L, XL","warna":"","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Shorts Hitam Kasual","toped":"","stok":"ada","na":"tidak","bs":"tidak"},{"name":"Shorts Linen Drawstring","desc":"Shorts linen bertali tersedia Navy & Putih","descLong":"Bahan linen premium ringan dan adem. 2 pilihan warna.","price":105000,"priceOld":0,"badge":"2 Warna","img":"https://glowthrf.com/img10.jpg","img2":"","img3":"","kategori":"Celana","ukuran":"S, M, L, XL","warna":"Navy:#1B3A6B, Putih:#F5F5F5","ukuranNote":"","wa":"Halo Glowthrf! Saya mau order Shorts Linen Drawstring","toped":"","stok":"ada","na":"ya","bs":"tidak"}];
-var DISC_TIERS=[{"min":700000,"pct":20},{"min":500000,"pct":15},{"min":300000,"pct":10}];
-var MAX_TIER_MIN=700000;
-var SHIP_CONFIG={"reg":{"nama":"Reguler","harga":0,"est":"3-7 hari kerja - JNE / J&T / SiCepat","aktif":"ya"},"exp":{"nama":"Express","harga":25000,"est":"1-2 hari kerja","aktif":"ya"},"sam":{"nama":"Same Day","harga":45000,"est":"Jabodetabek - hari ini sebelum 12.00","aktif":"ya"}};
-var BANK_DATA={"bca":{"label":"BCA","norek":"5490871073","atasnama":"Charina Cahayati","color":"#003087","textColor":"#fff"},"mandiri":{"label":"Mandiri","norek":"087841697937","atasnama":"Charina Cahayati","color":"#003F8A","textColor":"#FFD700"},"bni":{"label":"BNI","norek":"087841697937","atasnama":"Charina Cahayati","color":"#F77F00","textColor":"#fff"},"seabank":{"label":"SeaBank","norek":"087841697937","atasnama":"Charina Cahayati","color":"#2B3595","textColor":"#fff"},"ovo":{"label":"OVO","norek":"087841697937","atasnama":"glowthrf","color":"#4C3494","textColor":"#fff"}};
-var CHECKOUT_CONFIG={"batasBayar":24,"confirmText":"Konfirmasi dan Pesan","catatan":"Item flash sale tidak dapat diretur/ditukar."};
-var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbz9XMAtVfkWn35UutPvFQcmYxY-GXQIKjEMlRdNJTF2EOQZfXepy6Z14K1gPH6DrZOr/exec';
-var SG_DATA=[["S","80-84 cm","55 cm"],["M","85-89 cm","57 cm"],["L","90-94 cm","59 cm"],["XL","95-100 cm","61 cm"]];
+var WA='${E(wa)}';
+var cartTpl=${JSON.stringify(cartWaTpl)};
+var allProds=${JSON.stringify(D.products)};
+var DISC_TIERS=${discTiersJSON};
+var MAX_TIER_MIN=${maxTierMin};
+var SHIP_CONFIG=${JSON.stringify(D.shipConfig||{})};
+var BANK_DATA=${bankDataJSON};
+var CHECKOUT_CONFIG=${JSON.stringify(cc)};
+var APPS_SCRIPT_URL='${E(D.appsScriptUrl||'')}';
+var SG_DATA=${sgDataJSON};
 function getDisc(s){for(var t of DISC_TIERS){if(s>=t.min)return t;}return null;}
 function getShipCost(){var cfg=SHIP_CONFIG[selShipMethod]||{};return cfg.harga||0;}
 function fmtRp(n){return 'Rp '+Number(n).toLocaleString('id');}
@@ -720,9 +1545,9 @@ function openCart(){document.getElementById('cart-ov').classList.add('open');doc
 function closeCart(){document.getElementById('cart-ov').classList.remove('open');document.getElementById('cart-dr').classList.remove('open');}
 function renderCart(){
   var body=document.getElementById('cart-body');var ft=document.getElementById('cart-ft');
-  if(!cart.length){body.innerHTML='<div class="cart-empty">Keranjang kamu masih kosong. Yuk belanja!</div>';ft.style.display='none';return;}
+  if(!cart.length){body.innerHTML='<div class="cart-empty">${E(cartEmptyText)}</div>';ft.style.display='none';return;}
   ft.style.display='block';
-  body.innerHTML=cart.map((it,i)=>'<div class="ci"><img src="'+it.img+'" onerror="this.style.display=\'none\'" alt=""><div class="ci-info"><div class="ci-name">'+it.nm+'</div><div class="ci-det">'+(it.sz?'Ukuran: '+it.sz+' ':'')+(it.wr?'Warna: '+it.wr:'')+'</div><div class="ci-price">Rp '+it.pr.toLocaleString("id")+'</div><div class="ci-qty"><button onclick="cQty('+i+',-1)">−</button><span>'+it.qty+'</span><button onclick="cQty('+i+',1)">+</button></div></div><button class="ci-rm" onclick="cRm('+i+')">×</button></div>').join('');
+  body.innerHTML=cart.map((it,i)=>'<div class="ci"><img src="'+it.img+'" onerror="this.style.display=\\'none\\'" alt=""><div class="ci-info"><div class="ci-name">'+it.nm+'</div><div class="ci-det">'+(it.sz?'Ukuran: '+it.sz+' ':'')+(it.wr?'Warna: '+it.wr:'')+'</div><div class="ci-price">Rp '+it.pr.toLocaleString("id")+'</div><div class="ci-qty"><button onclick="cQty('+i+',-1)">−</button><span>'+it.qty+'</span><button onclick="cQty('+i+',1)">+</button></div></div><button class="ci-rm" onclick="cRm('+i+')">×</button></div>').join('');
   document.getElementById('cart-tot').textContent='Rp '+cart.reduce((a,i)=>a+i.pr*i.qty,0).toLocaleString('id');
 }
 function cQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart();renderCart();}
@@ -750,7 +1575,7 @@ function selPay(id,el){selPayMethod=id;document.querySelectorAll('.pay-opt').for
 function renderCoItems(){
   var el=document.getElementById('co-items');if(!el)return;
   var cnt=document.getElementById('co-bag-count');if(cnt)cnt.textContent=cart.reduce(function(a,i){return a+i.qty;},0);
-  el.innerHTML=cart.map(function(it,i){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:60px;height:70px;object-fit:cover;border-radius:8px;flex-shrink:0" onerror="this.style.display='none'"><div style="flex:1;padding-left:10px"><div style="font-size:13px;font-weight:700;margin-bottom:3px">'+it.nm+'</div><div style="font-size:11px;color:#888;margin-bottom:4px">'+(it.sz?'Ukuran: '+it.sz:'')+(it.wr?' - '+it.wr:'')+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr)+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button onclick="adjQty('+i+',-1)" style="width:26px;height:26px;border:1px solid #ddd;border-radius:6px;cursor:pointer;background:#fff">-</button><span style="font-size:12px;font-weight:700;min-width:20px;text-align:center">'+it.qty+'</span><button onclick="adjQty('+i+',1)" style="width:26px;height:26px;border:1px solid #ddd;border-radius:6px;cursor:pointer;background:#fff">+</button><button onclick="rmItem('+i+')" style="background:none;border:none;cursor:pointer;color:#c00;font-size:11px;margin-left:4px">Hapus</button></div></div></div>';}).join('');
+  el.innerHTML=cart.map(function(it,i){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:60px;height:70px;object-fit:cover;border-radius:8px;flex-shrink:0" onerror="this.style.display=\'none\'"><div style="flex:1;padding-left:10px"><div style="font-size:13px;font-weight:700;margin-bottom:3px">'+it.nm+'</div><div style="font-size:11px;color:#888;margin-bottom:4px">'+(it.sz?'Ukuran: '+it.sz:'')+(it.wr?' - '+it.wr:'')+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr)+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button onclick="adjQty('+i+',-1)" style="width:26px;height:26px;border:1px solid #ddd;border-radius:6px;cursor:pointer;background:#fff">-</button><span style="font-size:12px;font-weight:700;min-width:20px;text-align:center">'+it.qty+'</span><button onclick="adjQty('+i+',1)" style="width:26px;height:26px;border:1px solid #ddd;border-radius:6px;cursor:pointer;background:#fff">+</button><button onclick="rmItem('+i+')" style="background:none;border:none;cursor:pointer;color:#c00;font-size:11px;margin-left:4px">Hapus</button></div></div></div>';}).join('');
 }
 function adjQty(i,d){if(cart[i]){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);}try{localStorage.setItem('gw-cart',JSON.stringify(cart));}catch(e){}updCartN();renderCoItems();}
 function rmItem(i){cart.splice(i,1);try{localStorage.setItem('gw-cart',JSON.stringify(cart));}catch(e){}updCartN();renderCoItems();}
@@ -775,7 +1600,7 @@ function calcFinal(){
   var sv2=document.getElementById('co-ship-val2');if(sv2)sv2.textContent=orderShipCost>0?fmtRp(orderShipCost):'GRATIS';
   var t2=document.getElementById('co-total2');if(t2)t2.textContent=fmtRp(total);
   var fi2=document.getElementById('co-final-items');
-  if(fi2)fi2.innerHTML=cart.map(function(it){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:50px;height:58px;object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display='none'"><div style="flex:1;padding-left:10px"><div style="font-size:12px;font-weight:700">'+it.nm+' x'+it.qty+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr*it.qty)+'</div></div></div>';}).join('');
+  if(fi2)fi2.innerHTML=cart.map(function(it){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:50px;height:58px;object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display=\'none\'"><div style="flex:1;padding-left:10px"><div style="font-size:12px;font-weight:700">'+it.nm+' x'+it.qty+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr*it.qty)+'</div></div></div>';}).join('');
 }
 function goStep2(){
   var req=[['sh-fn','Nama depan'],['sh-ln','Nama belakang'],['sh-phone','Nomor HP'],['sh-addr','Alamat']];
@@ -798,7 +1623,7 @@ function confirmOrder(){
   var orderData={orderNo:'#'+orderNo,nama:fn+' '+ln,phone:phone,alamat:addr,kota:city,provinsi:prov,catatan:note,items:cart.map(function(it){return{nm:it.nm,sz:it.sz||'',wr:it.wr||'',pr:it.pr,qty:it.qty};}),subtotal:sub,diskon:da,ongkir:orderShipCost,total:total,metodeBayar:(bank.label||selPayMethod)+(bank.norek?' - '+bank.norek:''),metodeKirim:(shipCfg.nama||selShipMethod)};
   // Fill confirmation
   var n=document.getElementById('oc-order-no');if(n)n.textContent='#'+orderNo;
-  var oi=document.getElementById('oc-items');if(oi)oi.innerHTML=cart.map(function(it){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:50px;height:58px;object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display='none'"><div style="flex:1;padding-left:10px"><div style="font-size:12px;font-weight:700">'+it.nm+' x'+it.qty+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr*it.qty)+'</div></div></div>';}).join('');
+  var oi=document.getElementById('oc-items');if(oi)oi.innerHTML=cart.map(function(it){return '<div class="co-item"><img src="'+(it.img||'')+'" style="width:50px;height:58px;object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display=\'none\'"><div style="flex:1;padding-left:10px"><div style="font-size:12px;font-weight:700">'+it.nm+' x'+it.qty+'</div><div style="font-size:13px;font-weight:800;color:var(--pk)">'+fmtRp(it.pr*it.qty)+'</div></div></div>';}).join('');
   var ot=document.getElementById('oc-total');if(ot)ot.textContent=fmtRp(total);
   var oa=document.getElementById('oc-addr');if(oa)oa.textContent=fn+' '+ln+' - '+[addr,city,prov].filter(Boolean).join(', ');
   var op=document.getElementById('oc-pay-method');if(op)op.textContent=bank.label||selPayMethod;
@@ -836,24 +1661,24 @@ function openDetail(p){
   document.getElementById('det-short').textContent=p.desc||'';
   document.getElementById('det-long').textContent=p.descLong||'';
   var stEl=document.getElementById('det-stok');
-  stEl.textContent=p.stok==='ada'?'✅ Stok Tersedia':p.stok==='preorder'?'⏳ Pre-Order':'❌ Stok Habis';
+  stEl.textContent=p.stok==='ada'?'${E(detStokAda)}':p.stok==='preorder'?'⏳ Pre-Order':'${E(detStokHabis)}';
   stEl.className='det-stok '+(p.stok==='ada'?'ada':'habis');
   var imgs=[p.img,p.img2,p.img3].filter(Boolean);
   document.getElementById('det-img').src=imgs[0]||'';
-  document.getElementById('det-thumbs').innerHTML=imgs.map((img,i)=>'<img src="'+img+'" class="'+(i===0?'act':'')+'" onclick="swImg(this,\''+img+'\')">').join('');
+  document.getElementById('det-thumbs').innerHTML=imgs.map((img,i)=>'<img src="'+img+'" class="'+(i===0?'act':'')+'" onclick="swImg(this,\\''+img+'\\')">').join('');
   var szs=p.ukuran?p.ukuran.split(',').map(u=>u.trim()).filter(Boolean):[];
   var sgBtn=document.getElementById('sg-btn');if(sgBtn)sgBtn.style.display=(SG_DATA&&SG_DATA.length&&szs.length)?'inline-block':'none';
   var szW=document.getElementById('det-sz-wrap');
-  if(szs.length){szW.style.display='block';document.getElementById('det-sizes').innerHTML=szs.map(s=>'<button onclick="selSzBtn(this,\''+s+'\')">'+s+'</button>').join('');}else szW.style.display='none';
+  if(szs.length){szW.style.display='block';document.getElementById('det-sizes').innerHTML=szs.map(s=>'<button onclick="selSzBtn(this,\\''+s+'\\')">'+s+'</button>').join('');}else szW.style.display='none';
   var wrs=p.warna?p.warna.split(',').map(w=>{var pt=w.split(':');return{nm:(pt[0]||'').trim(),hx:(pt[1]||'').trim()};}).filter(w=>w.nm):[];
   var wrW=document.getElementById('det-wr-wrap');
-  if(wrs.length){wrW.style.display='block';document.getElementById('det-warnas').innerHTML=wrs.map(w=>'<button onclick="selWrBtn(this,\''+w.nm+'\')"><span class="wd" style="background:'+w.hx+'"></span>'+w.nm+'</button>').join('');}else wrW.style.display='none';
+  if(wrs.length){wrW.style.display='block';document.getElementById('det-warnas').innerHTML=wrs.map(w=>'<button onclick="selWrBtn(this,\\''+w.nm+'\\')"><span class="wd" style="background:'+w.hx+'"></span>'+w.nm+'</button>').join('');}else wrW.style.display='none';
   var wlBtn=document.getElementById('det-wl-btn');
   wlBtn.classList.toggle('wl-saved',wl.includes(p.name));wlBtn.textContent=wl.includes(p.name)?'♥':'♡';
   var related=allProds.filter(r=>r.name!==p.name&&r.kategori===p.kategori).slice(0,4);
   var rel=document.getElementById('det-related');
   rel.style.display=related.length?'block':'none';
-  if(related.length){rel.innerHTML='<div style="max-width:1100px;margin:0 auto;padding:0 5%"><h3>Produk Serupa</h3><div class="p-grid">'+related.map(r=>{var pData=JSON.stringify(r).replace(/\\/g,'\\\\').replace(/"/g,"'").replace(/</g,'\\u003c').replace(/>/g,'\\u003e');return '<div class="p-card" onclick="openDetail('+pData+')"><div class="p-img-wrap">'+(r.img?'<img src="'+r.img+'" alt="'+r.name+'" style="height:180px;width:100%;object-fit:cover">':'')+'</div><div class="p-info"><div class="p-name">'+r.name+'</div><div class="p-price">Rp '+r.price.toLocaleString("id")+'</div></div></div>';}).join('')+'</div></div>';}
+  if(related.length){rel.innerHTML='<div style="max-width:1100px;margin:0 auto;padding:0 5%"><h3>${E(detBackText.replace('← Kembali ke Koleksi','Produk Serupa'))}</h3><div class="p-grid">'+related.map(r=>{var pData=JSON.stringify(r).replace(/\\\\/g,'\\\\\\\\').replace(/"/g,"'").replace(/</g,'\\\\u003c').replace(/>/g,'\\\\u003e');return '<div class="p-card" onclick="openDetail('+pData+')"><div class="p-img-wrap">'+(r.img?'<img src="'+r.img+'" alt="'+r.name+'" style="height:180px;width:100%;object-fit:cover">':'')+'</div><div class="p-info"><div class="p-name">'+r.name+'</div><div class="p-price">Rp '+r.price.toLocaleString("id")+'</div></div></div>';}).join('')+'</div></div>';}
   window.scrollTo(0,0);
 }
 function closeDet(){document.getElementById('det-page').classList.remove('open');}
@@ -885,8 +1710,99 @@ function resetFilters(){
   document.querySelectorAll('.fb.fa[data-uk]').forEach(b=>b.classList.remove('fa'));
   document.querySelectorAll('#p-grid .p-card').forEach(c=>c.style.display='');
 }
-function updTimer(){var end=new Date('2025-12-31T23:59').getTime(),now=Date.now(),d=end-now;if(d<=0){document.getElementById('top-banner').style.display='none';return;}document.getElementById('t-h').textContent=String(Math.floor(d/3600000)).padStart(2,'0');document.getElementById('t-m').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');document.getElementById('t-s').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');}updTimer();setInterval(updTimer,1000);
-function closePopup(){document.getElementById('pop-ov').classList.remove('open');try{localStorage.setItem('gw-pop',Date.now());}catch(e){}}function copyKode(el){var t=el.textContent.replace('📋','').trim();try{navigator.clipboard.writeText(t);}catch(e){}el.textContent=t+' ✓ Disalin!';}var lp=null;try{lp=localStorage.getItem('gw-pop');}catch(e){}if(!lp||Date.now()-parseInt(lp)>86400000){setTimeout(()=>document.getElementById('pop-ov').classList.add('open'),2000);}
+${bannerAktif==='ya'&&bannerEnd?`function updTimer(){var end=new Date('${bannerEnd}').getTime(),now=Date.now(),d=end-now;if(d<=0){document.getElementById('top-banner').style.display='none';return;}document.getElementById('t-h').textContent=String(Math.floor(d/3600000)).padStart(2,'0');document.getElementById('t-m').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');document.getElementById('t-s').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');}updTimer();setInterval(updTimer,1000);`:'if(document.getElementById("top-banner"))document.getElementById("top-banner").style.display="none";'}
+${popupAktif==='ya'?`function closePopup(){document.getElementById('pop-ov').classList.remove('open');try{localStorage.setItem('gw-pop',Date.now());}catch(e){}}function copyKode(el){var t=el.textContent.replace('📋','').trim();try{navigator.clipboard.writeText(t);}catch(e){}el.textContent=t+' ✓ Disalin!';}var lp=null;try{lp=localStorage.getItem('gw-pop');}catch(e){}if(!lp||Date.now()-parseInt(lp)>86400000){setTimeout(()=>document.getElementById('pop-ov').classList.add('open'),${popupDelay}000);}`:''}
 function showToast(m){var t=document.createElement('div');t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a0d12;color:#fff;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.style.opacity='1',10);setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),400)},2500);}
 updCartN();
+<\/script>`;
+}
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded',function(){
+  renderProducts();
+  renderColorPresets();
+  document.getElementById('sv-produk').textContent=D.products.length;
+  document.getElementById('sv-ulasan').textContent=D.reviews.length;
+  document.getElementById('sv-new').textContent=D.products.filter(p=>p.na==='ya').length;
+  document.getElementById('sv-best').textContent=D.products.filter(p=>p.bs==='ya').length;
+  document.getElementById('nc-produk').textContent=D.products.length;
+  document.getElementById('nc-ulasan').textContent=D.reviews.length;
+  document.querySelector('#page-produk .btn-pk').onclick=openAddProduct;
+});
+
+// ===== ADMIN: WARNA FILTER =====
+function renderWarnaFilter(){var el=document.getElementById('warna-filter-list');if(!el)return;el.innerHTML=(D.warnaFilter||[]).map(function(w,i){return'<div style="display:flex;align-items:center;gap:4px;background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600">'+w+'<button onclick="D.warnaFilter.splice('+i+',1);renderWarnaFilter()" style="background:none;border:none;cursor:pointer;color:#c00;font-size:14px;line-height:1;padding:0 0 0 3px">&times;</button></div>';}).join('');}
+function addWarnaFilter(){var v=prompt('Nama warna baru:');if(v&&v.trim()){if(!D.warnaFilter)D.warnaFilter=[];D.warnaFilter.push(v.trim());renderWarnaFilter();}}
+
+// ===== ADMIN: CHECKOUT =====
+function renderCheckoutAdmin(){
+  var banks=['bca','mandiri','bni','seabank','ovo'];
+  banks.forEach(function(b){var cfg=(D.payConfig||{})[b]||{};var g=function(id){return document.getElementById(id);};if(g('pay-'+b+'-norek'))g('pay-'+b+'-norek').value=cfg.norek||'';if(g('pay-'+b+'-nama'))g('pay-'+b+'-nama').value=cfg.nama||'';if(g('pay-'+b+'-ket'))g('pay-'+b+'-ket').value=cfg.ket||'';if(g('pay-'+b+'-aktif'))g('pay-'+b+'-aktif').value=cfg.aktif||'ya';});
+  var cc=D.checkoutConfig||{};var g=function(id){return document.getElementById(id);};
+  if(g('co-batas-bayar'))g('co-batas-bayar').value=cc.batasBayar||24;
+  if(g('co-confirm-text'))g('co-confirm-text').value=cc.confirmText||'Konfirmasi dan Pesan';
+  if(g('co-catatan'))g('co-catatan').value=cc.catatan||'';
+  if(g('co-apps-script-url'))g('co-apps-script-url').value=D.appsScriptUrl||'';
+}
+function saveCheckoutAdmin(){
+  if(!D.payConfig)D.payConfig={};
+  ['bca','mandiri','bni','seabank','ovo'].forEach(function(b){var g=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};D.payConfig[b]={norek:g('pay-'+b+'-norek'),nama:g('pay-'+b+'-nama'),ket:g('pay-'+b+'-ket'),aktif:g('pay-'+b+'-aktif')||'ya'};});
+  if(!D.checkoutConfig)D.checkoutConfig={};
+  D.checkoutConfig.batasBayar=parseInt(document.getElementById('co-batas-bayar').value)||24;
+  D.checkoutConfig.confirmText=document.getElementById('co-confirm-text').value||'Konfirmasi dan Pesan';
+  D.checkoutConfig.catatan=document.getElementById('co-catatan').value||'';
+  var asUrl=document.getElementById('co-apps-script-url');if(asUrl)D.appsScriptUrl=asUrl.value.trim();
+  toast('Checkout & Pembayaran disimpan!');
+}
+
+// ===== ADMIN: PENGIRIMAN =====
+function renderPengirimanAdmin(){['reg','exp','sam'].forEach(function(m){var cfg=(D.shipConfig||{})[m]||{};var g=function(id){return document.getElementById(id);};if(g('ship-'+m+'-nama'))g('ship-'+m+'-nama').value=cfg.nama||'';if(g('ship-'+m+'-harga'))g('ship-'+m+'-harga').value=cfg.harga||0;if(g('ship-'+m+'-est'))g('ship-'+m+'-est').value=cfg.est||'';if(g('ship-'+m+'-aktif'))g('ship-'+m+'-aktif').value=cfg.aktif||'ya';});}
+function savePengirimanAdmin(){if(!D.shipConfig)D.shipConfig={};['reg','exp','sam'].forEach(function(m){var g=function(id){var el=document.getElementById(id);return el?el.value:'';};D.shipConfig[m]={nama:g('ship-'+m+'-nama'),harga:parseInt(g('ship-'+m+'-harga'))||0,est:g('ship-'+m+'-est'),aktif:g('ship-'+m+'-aktif')||'ya'};});toast('Pengiriman disimpan!');}
+
+// ===== ADMIN: DISKON =====
+function renderDiskonAdmin(){[1,2,3].forEach(function(i){var t=(D.discConfig||{})['t'+i]||{};var mn=document.getElementById('disc-t'+i+'-min');var pc=document.getElementById('disc-t'+i+'-pct');if(mn)mn.value=t.min||0;if(pc)pc.value=t.pct||0;updateDiscPreview(i);});}
+function saveDiskonAdmin(){if(!D.discConfig)D.discConfig={};[1,2,3].forEach(function(i){var mn=document.getElementById('disc-t'+i+'-min');var pc=document.getElementById('disc-t'+i+'-pct');D.discConfig['t'+i]={min:parseInt(mn?mn.value:0)||0,pct:parseInt(pc?pc.value:0)||0};updateDiscPreview(i);});toast('Diskon disimpan!');}
+function updateDiscPreview(i){var mn=document.getElementById('disc-t'+i+'-min');var pc=document.getElementById('disc-t'+i+'-pct');var pv=document.getElementById('disc-prev'+i);if(!pv)return;var min=parseInt(mn?mn.value:0)||0;var pct=parseInt(pc?pc.value:0)||0;pv.textContent=(min>0&&pct>0)?('Belanja min. Rp '+min.toLocaleString('id')+' - Diskon '+pct+'%'):'(Nonaktif)';}
 </script>
+
+<!-- PAGE: CHECKOUT & PEMBAYARAN -->
+<div id="page-checkout" class="page">
+  <div class="ib info">Edit nomor rekening untuk tiap metode pembayaran. Aktifkan atau nonaktifkan sesuai kebutuhan.</div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span style="background:#003087;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:6px">BCA</span>Transfer BCA</div><select id="pay-bca-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nomor Rekening</label><input type="text" id="pay-bca-norek" placeholder="Nomor rekening BCA"></div><div class="f"><label class="lbl">Atas Nama</label><input type="text" id="pay-bca-nama"></div></div><div class="f"><label class="lbl">Keterangan</label><input type="text" id="pay-bca-ket"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span style="background:#003F8A;color:#FFD700;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:6px">Mandiri</span>Transfer Mandiri</div><select id="pay-mandiri-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nomor Rekening</label><input type="text" id="pay-mandiri-norek"></div><div class="f"><label class="lbl">Atas Nama</label><input type="text" id="pay-mandiri-nama"></div></div><div class="f"><label class="lbl">Keterangan</label><input type="text" id="pay-mandiri-ket"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span style="background:#F77F00;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:6px">BNI</span>Transfer BNI</div><select id="pay-bni-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nomor Rekening</label><input type="text" id="pay-bni-norek"></div><div class="f"><label class="lbl">Atas Nama</label><input type="text" id="pay-bni-nama"></div></div><div class="f"><label class="lbl">Keterangan</label><input type="text" id="pay-bni-ket"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span style="background:#2B3595;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:6px">SeaBank</span>Transfer SeaBank</div><select id="pay-seabank-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nomor Rekening</label><input type="text" id="pay-seabank-norek"></div><div class="f"><label class="lbl">Atas Nama</label><input type="text" id="pay-seabank-nama"></div></div><div class="f"><label class="lbl">Keterangan</label><input type="text" id="pay-seabank-ket"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span style="background:#4C3494;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;margin-right:6px">OVO</span>OVO</div><select id="pay-ovo-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nomor HP OVO</label><input type="text" id="pay-ovo-norek" placeholder="08xxxxxxxxx"></div><div class="f"><label class="lbl">Atas Nama</label><input type="text" id="pay-ovo-nama"></div></div><div class="f"><label class="lbl">Keterangan</label><input type="text" id="pay-ovo-ket"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Pengaturan Checkout</div></div>
+    <div class="grid2"><div class="f"><label class="lbl">Batas Bayar (jam)</label><input type="number" id="co-batas-bayar" value="24" min="1"></div><div class="f"><label class="lbl">Teks Tombol Pesan</label><input type="text" id="co-confirm-text" value="Konfirmasi dan Pesan"></div></div>
+    <div class="f"><label class="lbl">Catatan bawah form</label><input type="text" id="co-catatan" value="Item flash sale tidak dapat diretur/ditukar."></div>
+    <div class="f"><label class="lbl">URL Google Apps Script (untuk Google Sheets + WA notif)</label><input type="text" id="co-apps-script-url" placeholder="https://script.google.com/macros/s/xxx/exec" style="font-size:11px" value="''' + APPS_SCRIPT_URL + '''"></div>
+    <button class="btn btn-pk" style="width:100%;margin-top:8px" onclick="saveCheckoutAdmin()">Simpan Checkout & Pembayaran</button>
+  </div>
+</div>
+
+<!-- PAGE: PENGIRIMAN -->
+<div id="page-pengiriman" class="page">
+  <div class="ib info">Atur nama, harga, dan estimasi tiap metode pengiriman. Harga 0 = GRATIS.</div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Reguler</div><select id="ship-reg-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nama</label><input type="text" id="ship-reg-nama" value="Reguler"></div><div class="f"><label class="lbl">Harga (0=Gratis)</label><input type="number" id="ship-reg-harga" value="0" min="0"></div></div><div class="f"><label class="lbl">Estimasi</label><input type="text" id="ship-reg-est" value="3-7 hari kerja"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Express</div><select id="ship-exp-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nama</label><input type="text" id="ship-exp-nama" value="Express"></div><div class="f"><label class="lbl">Harga (Rp)</label><input type="number" id="ship-exp-harga" value="25000" min="0"></div></div><div class="f"><label class="lbl">Estimasi</label><input type="text" id="ship-exp-est" value="1-2 hari kerja"></div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Same Day</div><select id="ship-sam-aktif"><option value="ya">Aktif</option><option value="tidak">Nonaktif</option></select></div><div class="grid2"><div class="f"><label class="lbl">Nama</label><input type="text" id="ship-sam-nama" value="Same Day"></div><div class="f"><label class="lbl">Harga (Rp)</label><input type="number" id="ship-sam-harga" value="45000" min="0"></div></div><div class="f"><label class="lbl">Estimasi</label><input type="text" id="ship-sam-est" value="Jabodetabek - hari ini sebelum 12.00"></div>
+    <button class="btn btn-pk" style="width:100%;margin-top:8px" onclick="savePengirimanAdmin()">Simpan Pengiriman</button>
+  </div>
+</div>
+
+<!-- PAGE: DISKON BELANJA -->
+<div id="page-diskon" class="page">
+  <div class="ib info">Diskon otomatis berdasarkan total belanja. Pembeli lihat progress di checkout. Isi 0 untuk nonaktifkan.</div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Tier Diskon 1</div></div><div class="grid2"><div class="f"><label class="lbl">Min. Belanja (Rp)</label><input type="number" id="disc-t1-min" value="300000" min="0" oninput="updateDiscPreview(1)"></div><div class="f"><label class="lbl">Diskon (%)</label><input type="number" id="disc-t1-pct" value="10" min="0" max="100" oninput="updateDiscPreview(1)"></div></div><div id="disc-prev1" style="padding:8px 12px;background:#e8f5ee;border-radius:8px;font-size:12px;color:#2E7D52;font-weight:600;margin-top:6px">Belanja min. Rp 300.000 - Diskon 10%</div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Tier Diskon 2</div></div><div class="grid2"><div class="f"><label class="lbl">Min. Belanja (Rp)</label><input type="number" id="disc-t2-min" value="500000" min="0" oninput="updateDiscPreview(2)"></div><div class="f"><label class="lbl">Diskon (%)</label><input type="number" id="disc-t2-pct" value="15" min="0" max="100" oninput="updateDiscPreview(2)"></div></div><div id="disc-prev2" style="padding:8px 12px;background:#e8f5ee;border-radius:8px;font-size:12px;color:#2E7D52;font-weight:600;margin-top:6px">Belanja min. Rp 500.000 - Diskon 15%</div></div>
+  <div class="card"><div class="card-hd"><div class="card-title"><span class="dot"></span>Tier Diskon 3</div></div><div class="grid2"><div class="f"><label class="lbl">Min. Belanja (Rp)</label><input type="number" id="disc-t3-min" value="700000" min="0" oninput="updateDiscPreview(3)"></div><div class="f"><label class="lbl">Diskon (%)</label><input type="number" id="disc-t3-pct" value="20" min="0" max="100" oninput="updateDiscPreview(3)"></div></div><div id="disc-prev3" style="padding:8px 12px;background:#e8f5ee;border-radius:8px;font-size:12px;color:#2E7D52;font-weight:600;margin-top:6px">Belanja min. Rp 700.000 - Diskon 20%</div>
+    <button class="btn btn-pk" style="width:100%;margin-top:8px" onclick="saveDiskonAdmin()">Simpan Diskon</button>
+  </div>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
